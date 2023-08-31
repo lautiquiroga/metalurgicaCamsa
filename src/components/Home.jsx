@@ -23,7 +23,7 @@ import perfil12 from "../multimedia/perfil12.jpeg";
 import perfil13 from "../multimedia/perfil13.jpeg";
 import perfil14 from "../multimedia/perfil14.jpeg";
 import perfil15 from "../multimedia/perfil15.jpeg";
-import plano from "../multimedia/plano.jpeg";
+import plano from "../multimedia/plano.jpg";
 
 export default function Home() {
   const [alerta, setAlerta] = useState(false);
@@ -601,7 +601,7 @@ export default function Home() {
   };
 
   const handleRemoveMedida = () => {
-    if (medidas.length > 0) {
+    if (medidas.length > 1) {
       const updatedMedidas = medidas.slice(0, -1);
       setMedidas(updatedMedidas);
     }
