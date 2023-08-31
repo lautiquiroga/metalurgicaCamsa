@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { ClipLoader } from "react-spinners";
 import categ1 from "../multimedia/categ1.jpeg";
 import categ2 from "../multimedia/categ2.jpeg";
 import categ3 from "../multimedia/categ3.jpeg";
@@ -27,17 +29,7 @@ export default function Home() {
   const [alerta, setAlerta] = useState(false);
   const [formData, setFormData] = useState("");
   const [medidas, setMedidas] = useState(["medida 1"]);
-
-  const handleAddMedida = () => {
-    setMedidas([...medidas, `medida ${medidas.length + 1}`]);
-  };
-
-  const handleRemoveMedida = () => {
-    if (medidas.length > 0) {
-      const updatedMedidas = medidas.slice(0, -1);
-      setMedidas(updatedMedidas);
-    }
-  };
+  const [loading, setLoading] = useState(false);
   const categorias = [
     { nombre: "Rascadores", imagen: categ1 },
     { nombre: "Sellos de vástago", imagen: categ2 },
@@ -47,7 +39,6 @@ export default function Home() {
     { nombre: "Anillos guía", imagen: categ6 },
     { nombre: "Anillos de apoyo", imagen: categ7 },
   ];
-
   const perfilesPorCategoria = {
     Rascadores: [
       {
@@ -593,6 +584,29 @@ export default function Home() {
   const [perfilSeleccionado, setPerfilSeleccionado] = useState(null);
   const [formularioVisible, setFormularioVisible] = useState(false);
 
+  useEffect(() => {
+    if (alerta) {
+      const timeout = setTimeout(() => {
+        setAlerta(false);
+      }, 3000);
+
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [alerta]);
+
+  const handleAddMedida = () => {
+    setMedidas([...medidas, `medida ${medidas.length + 1}`]);
+  };
+
+  const handleRemoveMedida = () => {
+    if (medidas.length > 0) {
+      const updatedMedidas = medidas.slice(0, -1);
+      setMedidas(updatedMedidas);
+    }
+  };
+
   const handleClickCategoria = (categoria) => {
     setCategoriaSeleccionada(categoria);
     setPerfilSeleccionado(null);
@@ -614,6 +628,7 @@ export default function Home() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true); // Mostrar el loader
     const form = event.target;
     const formDataToSend = new FormData(form);
     formDataToSend.append("categoria", categoriaSeleccionada);
@@ -623,20 +638,22 @@ export default function Home() {
     formDataToSend.append("plano", imageBlob, "plano.jpeg");
 
     try {
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: formDataToSend,
+      const response = await axios.post(form.action, formDataToSend, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
 
-      if (response.ok) {
+      if (response.status === 200) {
         setAlerta(true);
-        alert("exito");
         setFormData("");
       } else {
         console.error("Error al enviar el formulario");
       }
     } catch (error) {
       console.error("Error al enviar el formulario", error);
+    } finally {
+      setLoading(false); // Ocultar el loader después del envío
     }
   };
 
@@ -739,7 +756,7 @@ export default function Home() {
                       key={index}
                       type="number"
                       name={`medida-${index + 1}`}
-                      placeholder={medida}
+                      placeholder={`${medida} (en milímetros)`}
                       value={formData[`medida-${index + 1}`] || ""}
                       onChange={handleInputChange}
                       required
@@ -749,8 +766,18 @@ export default function Home() {
                   <button type="submit" className="submit">
                     Enviar
                   </button>
+                  {alerta && (
+                    <div className="alertaContainer">
+                      <p>Enviado con éxito</p>
+                    </div>
+                  )}
                 </form>
               </div>
+              {loading && (
+                <div className="loader-container">
+                  <ClipLoader size={50} color={"#123abc"} loading={loading} />
+                </div>
+              )}
             </div>
           </div>
         </>
