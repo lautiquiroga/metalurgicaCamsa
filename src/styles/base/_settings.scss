@@ -1,0 +1,76 @@
+$magentaClaro: #c4104fb4;
+$magenta: #b70543;
+$gris: #333333;
+$magentaFuerte: #ff0059;
+$fondoClaro: #f2f2f2;
+$grisClaro: #e7e7e7;
+$grisOscuro: #808080;
+$tituloSize: 2.5vw;
+$subtSize: 4.5vw;
+$titleWeight: 700;
+$titleSize: 7vw;
+$titleSizeMax: 9vw;
+$titleSizeMaxPC: 2vw;
+$titleSizePC: 1.1vw;
+$titleSizeBigPC: 1.3vw;
+$subtSizePC: 1vw;
+$descrSizePC: 0.8vw;
+$light: 300;
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin centerCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin centerRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin botones {
+  padding: 0.75% 2.2%;
+  height: auto;
+  width: fit-content;
+  background-color: $magenta;
+  color: white;
+  font-size: 1.15vw;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+  text-decoration: none;
+  box-shadow: 0px 0px 0.8rem 0px rgba(0, 0, 0, 0.207);
+}
+
+@mixin tituloMediano {
+  width: 50%;
+  font-size: 3.5vw;
+  font-weight: 700;
+}
+
+@mixin tituloMedianoResp {
+  width: 50%;
+  font-size: 8vw;
+  font-weight: 700;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+// * {
+//   background-color: black !important;
+//   color: white !important;
+// }
