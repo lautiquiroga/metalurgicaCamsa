@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/metalurgicaCamsa/build/static/css/main.ac054281.css",
+    "main.js": "/metalurgicaCamsa/build/static/js/main.9315dd38.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/metalurgicaCamsa/build/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/plano.jpg": "/metalurgicaCamsa/build/static/media/plano.9abff3352489e176994c.jpg",
+    "index.html": "/metalurgicaCamsa/build/index.html",
+    "main.ac054281.css.map": "/metalurgicaCamsa/build/static/css/main.ac054281.css.map",
+    "main.9315dd38.js.map": "/metalurgicaCamsa/build/static/js/main.9315dd38.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/metalurgicaCamsa/build/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ac054281.css",
+    "static/js/main.9315dd38.js"
+  ]
+}
