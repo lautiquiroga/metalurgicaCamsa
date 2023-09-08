@@ -1,34 +1,62 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
-import categ1 from "../multimedia/categ1.jpeg";
-import categ2 from "../multimedia/categ2.jpeg";
-import categ3 from "../multimedia/categ3.jpeg";
-import categ4 from "../multimedia/categ4.jpeg";
-import categ5 from "../multimedia/categ5.jpeg";
-import categ6 from "../multimedia/categ6.jpeg";
-import categ7 from "../multimedia/categ7.jpeg";
-import perfil1 from "../multimedia/perfil1.jpeg";
-import perfil2 from "../multimedia/perfil2.jpeg";
-import perfil3 from "../multimedia/perfil3.jpeg";
-import perfil4 from "../multimedia/perfil4.jpeg";
-import perfil5 from "../multimedia/perfil5.jpeg";
-import perfil6 from "../multimedia/perfil6.jpeg";
-import perfil7 from "../multimedia/perfil7.jpeg";
-import perfil8 from "../multimedia/perfil8.jpeg";
-import perfil9 from "../multimedia/perfil9.jpeg";
-import perfil10 from "../multimedia/perfil10.jpeg";
-import perfil11 from "../multimedia/perfil11.jpeg";
-import perfil12 from "../multimedia/perfil12.jpeg";
-import perfil13 from "../multimedia/perfil13.jpeg";
-import perfil14 from "../multimedia/perfil14.jpeg";
-import perfil15 from "../multimedia/perfil15.jpeg";
-import plano from "../multimedia/plano.jpg";
+
+// Imágenes de las categorías
+import categ1 from "../multimedia/rascadores/categ1.jpeg";
+import categ2 from "../multimedia/sellos de vastago/categ2.jpeg";
+import categ3 from "../multimedia/sellos de piston/categ3.jpeg";
+import categ4 from "../multimedia/sellos rotativos/categ4.jpeg";
+import categ5 from "../multimedia/junta plana/categ5.jpeg";
+import categ6 from "../multimedia/anillos guia/categ6.jpeg";
+import categ7 from "../multimedia/anillos de apoyo/categ7.jpeg";
+
+// Imágenes de los planos
+import plano1 from "../multimedia/planos/plano1.jpeg";
+import plano2 from "../multimedia/planos/plano2.png";
+import plano3 from "../multimedia/planos/plano3.png";
+import plano4 from "../multimedia/planos/plano4.png";
+import plano5 from "../multimedia/planos/plano5.png";
+import plano6 from "../multimedia/planos/plano6.png";
+import plano7 from "../multimedia/planos/plano7.png";
+import plano8 from "../multimedia/planos/plano8.png";
+import plano9 from "../multimedia/planos/plano9.png";
+import plano10 from "../multimedia/planos/plano10.png";
+import plano11 from "../multimedia/planos/plano11.png";
+import plano12 from "../multimedia/planos/plano12.png";
+import plano13 from "../multimedia/planos/plano13.png";
+
+// Imágenes de los perfiles
+// Rascadores
+import DA101 from "../multimedia/rascadores/DA101.jpeg";
+import DA101A from "../multimedia/rascadores/DA101A.jpeg";
+import DA102 from "../multimedia/rascadores/DA102.jpeg";
+import DA102A from "../multimedia/rascadores/DA102A.jpeg";
+import DA103 from "../multimedia/rascadores/DA103.jpeg";
+import DA104 from "../multimedia/rascadores/DA104.jpeg";
+import DA105 from "../multimedia/rascadores/DA105.jpeg";
+import DA106 from "../multimedia/rascadores/DA106.jpeg";
+import DA107 from "../multimedia/rascadores/DA107.jpeg";
+import DA108 from "../multimedia/rascadores/DA108.jpeg";
+import DA109 from "../multimedia/rascadores/DA109.jpeg";
+import DA109B from "../multimedia/rascadores/DA109B.jpeg";
+import DA109C from "../multimedia/rascadores/DA109C.jpeg";
+import DA211 from "../multimedia/rascadores/DA211.jpeg";
+import DA212 from "../multimedia/rascadores/DA212.jpeg";
+import DA113 from "../multimedia/rascadores/da113.jpg";
+import DA213 from "../multimedia/rascadores/da213.jpg";
+import DA114 from "../multimedia/rascadores/da114.jpg";
+import DA115 from "../multimedia/rascadores/da115.jpg";
+import DA116 from "../multimedia/rascadores/da116.jpg";
+import DA117 from "../multimedia/rascadores/da117.jpg";
+import DA118 from "../multimedia/rascadores/da118.jpg";
+import DA119 from "../multimedia/rascadores/da119.jpg";
+
+// Sellos de Vástago
 
 export default function Home() {
   const [alerta, setAlerta] = useState(false);
   const [formData, setFormData] = useState("");
-  const [medidas, setMedidas] = useState(["medida 1"]);
   const [loading, setLoading] = useState(false);
   const categorias = [
     { nombre: "Rascadores", imagen: categ1 },
@@ -42,82 +70,145 @@ export default function Home() {
   const perfilesPorCategoria = {
     Rascadores: [
       {
-        nombre: "Perfil 1",
-        plano: plano,
-        imagenPerfil: perfil1,
+        nombre: "DA101",
+        plano: plano1,
+        planoNombre: "plano1",
+        imagenPerfil: DA101,
       },
       {
-        nombre: "Perfil 2",
-        plano: plano,
-        imagenPerfil: perfil2,
+        nombre: "DA101A",
+        plano: plano1,
+        planoNombre: "plano1",
+        imagenPerfil: DA101A,
       },
       {
-        nombre: "Perfil 3",
-        plano: plano,
-        imagenPerfil: perfil3,
+        nombre: "DA102",
+        plano: plano2,
+        planoNombre: "plano2",
+        imagenPerfil: DA102,
       },
       {
-        nombre: "Perfil 4",
-        plano: plano,
-        imagenPerfil: perfil4,
+        nombre: "DA102A",
+        plano: plano2,
+        planoNombre: "plano2",
+        imagenPerfil: DA102A,
       },
       {
-        nombre: "Perfil 5",
-        plano: plano,
-        imagenPerfil: perfil5,
+        nombre: "DA103",
+        plano: plano3,
+        planoNombre: "plano3",
+        imagenPerfil: DA103,
       },
       {
-        nombre: "Perfil 6",
-        plano: plano,
-        imagenPerfil: perfil6,
+        nombre: "DA104",
+        plano: plano1,
+        planoNombre: "plano1",
+        imagenPerfil: DA104,
       },
       {
-        nombre: "Perfil 7",
-        plano: plano,
-        imagenPerfil: perfil7,
+        nombre: "DA105",
+        plano: plano2,
+        planoNombre: "plano2",
+        imagenPerfil: DA105,
       },
       {
-        nombre: "Perfil 8",
-        plano: plano,
-        imagenPerfil: perfil8,
+        nombre: "DA106",
+        plano: plano3,
+        planoNombre: "plano3",
+        imagenPerfil: DA106,
       },
       {
-        nombre: "Perfil 9",
-        plano: plano,
-        imagenPerfil: perfil9,
+        nombre: "DA107",
+        plano: plano4,
+        planoNombre: "plano4",
+        imagenPerfil: DA107,
       },
       {
-        nombre: "Perfil 10",
-        plano: plano,
-        imagenPerfil: perfil10,
+        nombre: "DA108",
+        plano: plano5,
+        planoNombre: "plano5",
+        imagenPerfil: DA108,
       },
       {
-        nombre: "Perfil 11",
-        plano: plano,
-        imagenPerfil: perfil11,
+        nombre: "DA109",
+        plano: null,
+        planoNombre: null,
+        imagenPerfil: DA109,
       },
       {
-        nombre: "Perfil 12",
-        plano: plano,
-        imagenPerfil: perfil12,
+        nombre: "DA109B",
+        plano: null,
+        planoNombre: null,
+        imagenPerfil: DA109B,
       },
       {
-        nombre: "Perfil 13",
-        plano: plano,
-        imagenPerfil: perfil13,
+        nombre: "DA109C",
+        plano: null,
+        planoNombre: null,
+        imagenPerfil: DA109C,
       },
       {
-        nombre: "Perfil 14",
-        plano: plano,
-        imagenPerfil: perfil14,
+        nombre: "DA211",
+        plano: plano6,
+        planoNombre: "plano6",
+        imagenPerfil: DA211,
       },
       {
-        nombre: "Perfil 15",
-        plano: plano,
-        imagenPerfil: perfil15,
+        nombre: "DA212",
+        plano: null,
+        planoNombre: null,
+        imagenPerfil: DA212,
+      },
+      {
+        nombre: "DA113",
+        plano: plano7,
+        planoNombre: "plano7",
+        imagenPerfil: DA113,
+      },
+      {
+        nombre: "DA213",
+        plano: null,
+        planoNombre: null,
+        imagenPerfil: DA213,
+      },
+      {
+        nombre: "DA114",
+        plano: plano7,
+        planoNombre: "plano7",
+        imagenPerfil: DA114,
+      },
+      {
+        nombre: "DA115",
+        plano: plano7,
+        planoNombre: "plano7",
+        imagenPerfil: DA115,
+      },
+      {
+        nombre: "DA116",
+        plano: plano7,
+        planoNombre: "plano7",
+        imagenPerfil: DA116,
+      },
+      {
+        nombre: "DA117",
+        plano: null,
+        planoNombre: null,
+        imagenPerfil: DA117,
+      },
+      {
+        nombre: "DA118",
+        plano: null,
+        planoNombre: null,
+        imagenPerfil: DA118,
+      },
+      {
+        nombre: "DA119",
+        plano: null,
+        planoNombre: null,
+        imagenPerfil: DA119,
       },
     ],
-    "Sellos de vástago": [
+    /* "Sellos de vástago": [
       {
         nombre: "Perfil 1",
         plano: plano,
@@ -139,7 +230,7 @@ export default function Home() {
         imagenPerfil: perfil4,
       },
       {
-        nombre: "Perfil 5",
+        nombre: "DA103",
         plano: plano,
         imagenPerfil: perfil5,
       },
@@ -216,7 +307,7 @@ export default function Home() {
         imagenPerfil: perfil4,
       },
       {
-        nombre: "Perfil 5",
+        nombre: "DA103",
         plano: plano,
         imagenPerfil: perfil5,
       },
@@ -293,7 +384,7 @@ export default function Home() {
         imagenPerfil: perfil4,
       },
       {
-        nombre: "Perfil 5",
+        nombre: "DA103",
         plano: plano,
         imagenPerfil: perfil5,
       },
@@ -578,11 +669,10 @@ export default function Home() {
         plano: plano,
         imagenPerfil: perfil15,
       },
-    ],
+    ], */
   };
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
   const [perfilSeleccionado, setPerfilSeleccionado] = useState(null);
-  const [formularioVisible, setFormularioVisible] = useState(false);
 
   useEffect(() => {
     if (alerta) {
@@ -596,26 +686,13 @@ export default function Home() {
     }
   }, [alerta]);
 
-  const handleAddMedida = () => {
-    setMedidas([...medidas, `medida ${medidas.length + 1}`]);
-  };
-
-  const handleRemoveMedida = () => {
-    if (medidas.length > 1) {
-      const updatedMedidas = medidas.slice(0, -1);
-      setMedidas(updatedMedidas);
-    }
-  };
-
   const handleClickCategoria = (categoria) => {
     setCategoriaSeleccionada(categoria);
     setPerfilSeleccionado(null);
-    setFormularioVisible(false);
   };
 
   const handleClickPerfil = (perfil) => {
     setPerfilSeleccionado(perfil);
-    setFormularioVisible(true);
   };
 
   const handleInputChange = (event) => {
@@ -701,85 +778,150 @@ export default function Home() {
       )}
       {perfilSeleccionado && (
         <>
-          <p className="titulo">Medidas para {perfilSeleccionado.nombre}</p>
-          <div className="plano-form">
-            <div className="imagen-plano">
-              <img
-                src={perfilSeleccionado.plano}
-                alt={perfilSeleccionado.nombre}
-              />
-            </div>
-            <div className="formulario">
-              <div className="textForm">
-                <p className="titulo">
-                  Escribe las medidas en orden descendiente
-                </p>
-                <p className="descr">
-                  Cada campo de medida se relaciona directamente con una
-                  dimensión específica en el perfil, comenzando desde la medida
-                  que está más arriba y avanzando hacia abajo.
-                </p>
-                <form
-                  id="form"
-                  action="https://formsubmit.co/lautiquiroga10@gmail.com"
-                  method="POST"
-                  name="medidas-camsa"
-                  onSubmit={handleSubmit}
-                >
-                  <input type="hidden" name="_subject" value="Medidas CAMSA" />
-                  <input type="hidden" name="_captcha" value="false" />
-                  {/* Agregar campos ocultos para la categoría y el perfil */}
-                  <input
-                    type="hidden"
-                    name="categoria"
-                    value={categoriaSeleccionada}
+          {perfilSeleccionado.plano ? (
+            <>
+              <p className="titulo">Medidas para {perfilSeleccionado.nombre}</p>
+              <div className="plano-form">
+                <div className="imagen-plano">
+                  <img
+                    src={perfilSeleccionado.plano}
+                    alt={perfilSeleccionado.nombre}
                   />
-                  <input
-                    type="hidden"
-                    name="perfil"
-                    value={perfilSeleccionado.nombre}
-                  />
+                </div>
+                <div className="formulario">
+                  <div className="textForm">
+                    <p className="titulo">
+                      Escribe las medidas en orden descendiente
+                    </p>
+                    <p className="descr">
+                      Cada campo de medida se relaciona directamente con una
+                      dimensión específica en el perfil, comenzando desde la
+                      medida que está más arriba y avanzando hacia abajo.
+                    </p>
+                    <form
+                      id="form"
+                      action="https://formsubmit.co/lautiquiroga10@gmail.com"
+                      method="POST"
+                      name="medidas-camsa"
+                      onSubmit={handleSubmit}
+                    >
+                      <input
+                        type="hidden"
+                        name="_subject"
+                        value="Medidas CAMSA"
+                      />
+                      <input type="hidden" name="_captcha" value="false" />
+                      {/* Agregar campos ocultos para la categoría y el perfil */}
+                      <input
+                        type="hidden"
+                        name="categoria"
+                        value={categoriaSeleccionada}
+                      />
+                      <input
+                        type="hidden"
+                        name="perfil"
+                        value={perfilSeleccionado.nombre}
+                      />
 
-                  <div className="botones-medida">
-                    <button type="button" onClick={handleRemoveMedida}>
-                      -
-                    </button>
-                    <div className="cantMedidas">Cantidad de medidas</div>
+                      {perfilSeleccionado.planoNombre === "plano3" ||
+                      perfilSeleccionado.planoNombre === "plano7" ||
+                      perfilSeleccionado.planoNombre === "plano8" ||
+                      perfilSeleccionado.planoNombre === "plano9" ||
+                      perfilSeleccionado.planoNombre === "plano11" ||
+                      perfilSeleccionado.planoNombre === "plano12" ? (
+                        <>
+                          {Array.from({ length: 3 }, (_, index) => (
+                            <input
+                              key={index}
+                              type="number"
+                              name={`medida-${index + 1}`}
+                              placeholder={`Medida ${
+                                index + 1
+                              } (en milímetros)`}
+                              value={formData[`medida-${index + 1}`] || ""}
+                              onChange={handleInputChange}
+                              required
+                            />
+                          ))}
+                        </>
+                      ) : perfilSeleccionado.planoNombre === "plano1" ||
+                        perfilSeleccionado.planoNombre === "plano2" ||
+                        perfilSeleccionado.planoNombre === "plano4" ||
+                        perfilSeleccionado.planoNombre === "plano5" ? (
+                        <>
+                          {Array.from({ length: 4 }, (_, index) => (
+                            <input
+                              key={index}
+                              type="number"
+                              name={`medida-${index + 1}`}
+                              placeholder={`Medida ${
+                                index + 1
+                              } (en milímetros)`}
+                              value={formData[`medida-${index + 1}`] || ""}
+                              onChange={handleInputChange}
+                              required
+                            />
+                          ))}
+                        </>
+                      ) : perfilSeleccionado.planoNombre === "plano6" ? (
+                        <>
+                          {Array.from({ length: 5 }, (_, index) => (
+                            <input
+                              key={index}
+                              type="number"
+                              name={`medida-${index + 1}`}
+                              placeholder={`Medida ${
+                                index + 1
+                              } (en milímetros)`}
+                              value={formData[`medida-${index + 1}`] || ""}
+                              onChange={handleInputChange}
+                              required
+                            />
+                          ))}
+                        </>
+                      ) : (
+                        <>
+                          {Array.from({ length: 2 }, (_, index) => (
+                            <input
+                              key={index}
+                              type="number"
+                              name={`medida-${index + 1}`}
+                              placeholder={`Medida ${
+                                index + 1
+                              } (en milímetros)`}
+                              value={formData[`medida-${index + 1}`] || ""}
+                              onChange={handleInputChange}
+                              required
+                            />
+                          ))}
+                        </>
+                      )}
 
-                    <button type="button" onClick={handleAddMedida}>
-                      +
-                    </button>
+                      <button type="submit" className="submit">
+                        Enviar
+                      </button>
+                      {alerta && (
+                        <div className="alertaContainer">
+                          <p>Enviado con éxito</p>
+                        </div>
+                      )}
+                    </form>
                   </div>
-
-                  {medidas.map((medida, index) => (
-                    <input
-                      key={index}
-                      type="number"
-                      name={`medida-${index + 1}`}
-                      placeholder={`${medida} (en milímetros)`}
-                      value={formData[`medida-${index + 1}`] || ""}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  ))}
-
-                  <button type="submit" className="submit">
-                    Enviar
-                  </button>
-                  {alerta && (
-                    <div className="alertaContainer">
-                      <p>Enviado con éxito</p>
+                  {loading && (
+                    <div className="loader-container">
+                      <ClipLoader
+                        size={50}
+                        color={"#123abc"}
+                        loading={loading}
+                      />
                     </div>
                   )}
-                </form>
-              </div>
-              {loading && (
-                <div className="loader-container">
-                  <ClipLoader size={50} color={"#123abc"} loading={loading} />
                 </div>
-              )}
-            </div>
-          </div>
+              </div>
+            </>
+          ) : (
+            <div className="titulo">Contactar para más información</div>
+          )}
         </>
       )}
     </div>
