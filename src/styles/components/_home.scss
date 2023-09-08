@@ -62,15 +62,15 @@ body {
       -moz-border-radius: 0.8vw;
       -ms-border-radius: 0.8vw;
       -o-border-radius: 0.8vw;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.103);
       flex: 1;
       // padding: 1vw;
       &:hover {
         scale: 1.1;
       }
       img {
-        width: 7vw;
-        height: 7vw;
+        width: 9vw;
+        height: 9vw;
         margin-bottom: 5px;
       }
     }
@@ -86,12 +86,30 @@ body {
       width: 32vw;
       height: 25vw;
       margin-right: 20px;
+      object-fit: contain;
     }
     .formulario {
       @include center;
       flex-direction: column;
       height: 100%;
       width: 100%;
+      .alertaContainer {
+        margin-bottom: 4%;
+        background-color: rgb(195, 244, 204);
+        color: green;
+        text-align: center;
+        padding: 0.5vw 4vw;
+        border-radius: 0.8vw;
+        -webkit-border-radius: 0.8vw;
+        -moz-border-radius: 0.8vw;
+        -ms-border-radius: 0.8vw;
+        -o-border-radius: 0.8vw;
+        p {
+          margin: 0;
+          font-size: $subtSizePC;
+          font-weight: 500;
+        }
+      }
       .loader-container {
         display: flex;
         justify-content: center;
@@ -149,23 +167,6 @@ body {
             border-radius: 0.5vw;
             cursor: pointer;
             margin-top: 1vw;
-          }
-          .alertaContainer {
-            margin-top: 4%;
-            background-color: rgb(195, 244, 204);
-            color: green;
-            text-align: center;
-            padding: 1vw 1.2vw;
-            border-radius: 0.8vw;
-            -webkit-border-radius: 0.8vw;
-            -moz-border-radius: 0.8vw;
-            -ms-border-radius: 0.8vw;
-            -o-border-radius: 0.8vw;
-            p {
-              margin: 0;
-              font-size: $subtSizePC;
-              font-weight: 500;
-            }
           }
         }
       }

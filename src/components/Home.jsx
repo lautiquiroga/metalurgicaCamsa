@@ -52,7 +52,25 @@ import DA117 from "../multimedia/rascadores/da117.jpg";
 import DA118 from "../multimedia/rascadores/da118.jpg";
 import DA119 from "../multimedia/rascadores/da119.jpg";
 
-// Sellos de Vástago
+// Anillos guía
+import df101 from "../multimedia/anillos guia/df101.jpg";
+import df102 from "../multimedia/anillos guia/df102.jpg";
+import df103 from "../multimedia/anillos guia/df103.jpg";
+import df104 from "../multimedia/anillos guia/df104.jpg";
+import df105 from "../multimedia/anillos guia/df105.jpg";
+import df106 from "../multimedia/anillos guia/df106.jpg";
+import df107 from "../multimedia/anillos guia/df107.jpg";
+import df108 from "../multimedia/anillos guia/df108.jpg";
+import dfb102 from "../multimedia/anillos guia/dfb102.jpg";
+
+// Anillos de apoyo
+import dst108 from "../multimedia/anillos de apoyo/dst108.jpg";
+import dst109 from "../multimedia/anillos de apoyo/dst109.jpg";
+import dst110 from "../multimedia/anillos de apoyo/dst110.jpg";
+import dst111 from "../multimedia/anillos de apoyo/dst111.jpg";
+import dst112 from "../multimedia/anillos de apoyo/dst112.jpg";
+import dst113 from "../multimedia/anillos de apoyo/dst113.jpg";
+import dst114 from "../multimedia/anillos de apoyo/dst114.jpg";
 
 export default function Home() {
   const [alerta, setAlerta] = useState(false);
@@ -131,20 +149,14 @@ export default function Home() {
       },
       {
         nombre: "DA109",
-        plano: null,
-        planoNombre: null,
         imagenPerfil: DA109,
       },
       {
         nombre: "DA109B",
-        plano: null,
-        planoNombre: null,
         imagenPerfil: DA109B,
       },
       {
         nombre: "DA109C",
-        plano: null,
-        planoNombre: null,
         imagenPerfil: DA109C,
       },
       {
@@ -155,8 +167,6 @@ export default function Home() {
       },
       {
         nombre: "DA212",
-        plano: null,
-        planoNombre: null,
         imagenPerfil: DA212,
       },
       {
@@ -167,8 +177,6 @@ export default function Home() {
       },
       {
         nombre: "DA213",
-        plano: null,
-        planoNombre: null,
         imagenPerfil: DA213,
       },
       {
@@ -191,20 +199,14 @@ export default function Home() {
       },
       {
         nombre: "DA117",
-        plano: null,
-        planoNombre: null,
         imagenPerfil: DA117,
       },
       {
         nombre: "DA118",
-        plano: null,
-        planoNombre: null,
         imagenPerfil: DA118,
       },
       {
         nombre: "DA119",
-        plano: null,
-        planoNombre: null,
         imagenPerfil: DA119,
       },
     ],
@@ -515,161 +517,91 @@ export default function Home() {
         plano: plano,
         imagenPerfil: perfil15,
       },
-    ],
+    ],*/
     "Anillos guía": [
       {
-        nombre: "Perfil 1",
-        plano: plano,
-        imagenPerfil: perfil1,
+        nombre: "DF101",
+        plano: plano11,
+        planoNombre: "plano11",
+        imagenPerfil: df101,
       },
       {
-        nombre: "Perfil 2",
-        plano: plano,
-        imagenPerfil: perfil2,
+        nombre: "DF102",
+        plano: plano11,
+        planoNombre: "plano11",
+        imagenPerfil: df102,
       },
       {
-        nombre: "Perfil 3",
-        plano: plano,
-        imagenPerfil: perfil3,
+        nombre: "DF103",
+        imagenPerfil: df103,
       },
       {
-        nombre: "Perfil 4",
-        plano: plano,
-        imagenPerfil: perfil4,
+        nombre: "DF104",
+        imagenPerfil: df104,
       },
       {
-        nombre: "Perfil 5",
-        plano: plano,
-        imagenPerfil: perfil5,
+        nombre: "DF105",
+        imagenPerfil: df105,
       },
       {
-        nombre: "Perfil 6",
-        plano: plano,
-        imagenPerfil: perfil6,
+        nombre: "DF106",
+        imagenPerfil: df106,
       },
       {
-        nombre: "Perfil 7",
-        plano: plano,
-        imagenPerfil: perfil7,
+        nombre: "DF107",
+        imagenPerfil: df107,
       },
       {
-        nombre: "Perfil 8",
-        plano: plano,
-        imagenPerfil: perfil8,
+        nombre: "DF108",
+        imagenPerfil: df108,
       },
       {
-        nombre: "Perfil 9",
-        plano: plano,
-        imagenPerfil: perfil9,
-      },
-      {
-        nombre: "Perfil 10",
-        plano: plano,
-        imagenPerfil: perfil10,
-      },
-      {
-        nombre: "Perfil 11",
-        plano: plano,
-        imagenPerfil: perfil11,
-      },
-      {
-        nombre: "Perfil 12",
-        plano: plano,
-        imagenPerfil: perfil12,
-      },
-      {
-        nombre: "Perfil 13",
-        plano: plano,
-        imagenPerfil: perfil13,
-      },
-      {
-        nombre: "Perfil 14",
-        plano: plano,
-        imagenPerfil: perfil14,
-      },
-      {
-        nombre: "Perfil 15",
-        plano: plano,
-        imagenPerfil: perfil15,
+        nombre: "DFB102",
+        imagenPerfil: dfb102,
       },
     ],
     "Anillos de apoyo": [
       {
-        nombre: "Perfil 1",
-        plano: plano,
-        imagenPerfil: perfil1,
+        nombre: "DST108",
+        plano: plano12,
+        planoNombre: "plano12",
+        imagenPerfil: dst108,
       },
       {
-        nombre: "Perfil 2",
-        plano: plano,
-        imagenPerfil: perfil2,
+        nombre: "DST109",
+        plano: plano12,
+        planoNombre: "plano12",
+        imagenPerfil: dst109,
       },
       {
-        nombre: "Perfil 3",
-        plano: plano,
-        imagenPerfil: perfil3,
+        nombre: "DST110",
+        plano: plano12,
+        planoNombre: "plano12",
+        imagenPerfil: dst110,
       },
       {
-        nombre: "Perfil 4",
-        plano: plano,
-        imagenPerfil: perfil4,
+        nombre: "DST111",
+        plano: plano12,
+        planoNombre: "plano12",
+        imagenPerfil: dst111,
       },
       {
-        nombre: "Perfil 5",
-        plano: plano,
-        imagenPerfil: perfil5,
+        nombre: "DST112",
+        plano: plano12,
+        planoNombre: "plano12",
+        imagenPerfil: dst112,
       },
       {
-        nombre: "Perfil 6",
-        plano: plano,
-        imagenPerfil: perfil6,
+        nombre: "DST113",
+        plano: plano12,
+        planoNombre: "plano12",
+        imagenPerfil: dst113,
       },
       {
-        nombre: "Perfil 7",
-        plano: plano,
-        imagenPerfil: perfil7,
+        nombre: "DST114",
+        imagenPerfil: dst114,
       },
-      {
-        nombre: "Perfil 8",
-        plano: plano,
-        imagenPerfil: perfil8,
-      },
-      {
-        nombre: "Perfil 9",
-        plano: plano,
-        imagenPerfil: perfil9,
-      },
-      {
-        nombre: "Perfil 10",
-        plano: plano,
-        imagenPerfil: perfil10,
-      },
-      {
-        nombre: "Perfil 11",
-        plano: plano,
-        imagenPerfil: perfil11,
-      },
-      {
-        nombre: "Perfil 12",
-        plano: plano,
-        imagenPerfil: perfil12,
-      },
-      {
-        nombre: "Perfil 13",
-        plano: plano,
-        imagenPerfil: perfil13,
-      },
-      {
-        nombre: "Perfil 14",
-        plano: plano,
-        imagenPerfil: perfil14,
-      },
-      {
-        nombre: "Perfil 15",
-        plano: plano,
-        imagenPerfil: perfil15,
-      },
-    ], */
+    ],
   };
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
   const [perfilSeleccionado, setPerfilSeleccionado] = useState(null);
@@ -693,6 +625,9 @@ export default function Home() {
 
   const handleClickPerfil = (perfil) => {
     setPerfilSeleccionado(perfil);
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 100);
   };
 
   const handleInputChange = (event) => {
@@ -789,6 +724,11 @@ export default function Home() {
                   />
                 </div>
                 <div className="formulario">
+                  {alerta && (
+                    <div className="alertaContainer">
+                      <p>Enviado con éxito</p>
+                    </div>
+                  )}
                   <div className="textForm">
                     <p className="titulo">
                       Escribe las medidas en orden descendiente
@@ -900,11 +840,6 @@ export default function Home() {
                       <button type="submit" className="submit">
                         Enviar
                       </button>
-                      {alerta && (
-                        <div className="alertaContainer">
-                          <p>Enviado con éxito</p>
-                        </div>
-                      )}
                     </form>
                   </div>
                   {loading && (
@@ -920,7 +855,10 @@ export default function Home() {
               </div>
             </>
           ) : (
-            <div className="titulo">Contactar para más información</div>
+            <div className="titulo">
+              Contactáte con nosotros para recibir más información sobre el
+              perfil "{perfilSeleccionado.nombre}" en menos de 24hs.
+            </div>
           )}
         </>
       )}
