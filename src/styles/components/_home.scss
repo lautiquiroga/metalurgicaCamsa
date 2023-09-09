@@ -82,6 +82,7 @@ body {
     align-items: center;
     margin-bottom: 20px;
     justify-content: space-between;
+    // border: 1px solid red;
     .imagen-plano img {
       width: 32vw;
       height: 25vw;
@@ -89,10 +90,8 @@ body {
       object-fit: contain;
     }
     .formulario {
-      @include center;
-      flex-direction: column;
-      height: 100%;
-      width: 100%;
+      width: 50%;
+
       .alertaContainer {
         margin-bottom: 4%;
         background-color: rgb(195, 244, 204);
@@ -122,18 +121,30 @@ body {
         background-color: rgba(0, 0, 0, 0.5);
         z-index: 1000;
       }
-
       .textForm {
-        width: 60%;
-        .titulo {
-          margin-top: 0;
-        }
-        .descr {
+        // width: 60%;
+        // .titulo {
+        //   margin-top: 0;
+        // }
+
+        .subtitulo {
           font-size: $subtSizePC;
+          font-weight: 700;
         }
         form {
           display: flex;
           flex-direction: column;
+          // border: 1px solid green;
+          .columnas {
+            // width: 100%;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            .datosCliente,
+            .medidas {
+              width: 46%;
+            }
+          }
           .botones-medida {
             display: flex;
             align-items: center;
@@ -155,9 +166,17 @@ body {
               font-size: 2vw;
             }
           }
+          .titulo {
+            margin-top: 0;
+          }
+          label {
+            font-weight: 600;
+            font-size: $subtSizePC;
+          }
           input {
             margin-bottom: 0.5vw;
             padding: 2%;
+            width: 100%;
           }
           .submit {
             background-color: #ff232c;
