@@ -1397,6 +1397,7 @@ export default function Home() {
                             id="material"
                             onChange={handleInputChange}
                             value={formData["material"] || ""}
+                            required
                           >
                             <option value="" hidden>
                               Materiales
