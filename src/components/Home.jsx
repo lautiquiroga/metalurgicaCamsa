@@ -1382,10 +1382,37 @@ export default function Home() {
                             id="CUIL_CUIT"
                             name="CUIL_CUIT"
                             placeholder="CUIL/CUIT"
-                            value={formData[`CUIL/CUIT`] || ""}
+                            value={formData[`CUIL_CUIT`] || ""}
                             onChange={handleInputChange}
                             required
                           />
+                        </div>
+
+                        <div className="selectMaterial">
+                          <label className="titulo" htmlFor="material">
+                            Elige el material
+                          </label>
+                          <select
+                            name="material"
+                            id="material"
+                            onChange={handleInputChange}
+                            value={formData["material"] || ""}
+                          >
+                            <option value="" hidden>
+                              Materiales
+                            </option>
+                            <option value="HPU - Elastomero Termoplastico Rojo">
+                              HPU - Elastomero Termoplastico Rojo
+                            </option>
+                            <option value="POM - Plastico - Delring Blanco">
+                              POM - Plastico - Delring Blanco
+                            </option>
+                            <option value="PTFE - Teflon + 40% Bronce">
+                              PTFE - Teflon + 40% Bronce
+                            </option>
+                            <option value="NRB - Goma">NRB - Goma</option>
+                            <option value="FPM - Viton">FPM - Viton</option>
+                          </select>
                         </div>
 
                         <div className="medidas">
