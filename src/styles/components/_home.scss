@@ -136,10 +136,10 @@ body {
               width: 30%;
             }
             select {
+              cursor: pointer;
               width: 100%;
               height: 2.3vw;
               margin-top: 1.55vw;
-              // padding: 2%;
               font-size: $subtSizePC;
             }
             .titulo {
