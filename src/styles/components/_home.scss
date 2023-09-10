@@ -12,6 +12,24 @@ body {
     font-weight: 700;
     font-size: $titleSizeBigPC;
   }
+  .aviso {
+    background-color: #211a83;
+    color: white;
+    text-align: center;
+    padding: 2vw 20vw;
+    border-radius: 0.5vw;
+    -webkit-border-radius: 0.5vw;
+    -moz-border-radius: 0.5vw;
+    -ms-border-radius: 0.5vw;
+    -o-border-radius: 0.5vw;
+    font-size: 1.6vw;
+    margin-top: 5%;
+    // font-weight: 00;
+  }
+
+  .lastTitle {
+    margin-top: 3vw;
+  }
 
   .categorias {
     .titulo {
@@ -19,6 +37,7 @@ body {
       font-weight: 700;
       font-size: $titleSizeBigPC;
     }
+
     /* Estilos para la fila de categorías */
     .categoria-row {
       display: flex;
@@ -32,6 +51,7 @@ body {
         align-items: center;
         cursor: pointer;
         transition: all 0.5s;
+
         &:hover {
           filter: brightness(0.8);
           scale: 1.1;
@@ -56,11 +76,11 @@ body {
       align-items: center;
       cursor: pointer;
       transition: all 0.5s;
-      border-radius: 0.8vw;
-      -webkit-border-radius: 0.8vw;
-      -moz-border-radius: 0.8vw;
-      -ms-border-radius: 0.8vw;
-      -o-border-radius: 0.8vw;
+      border-radius: 0.5vw;
+      -webkit-border-radius: 0.5vw;
+      -moz-border-radius: 0.5vw;
+      -ms-border-radius: 0.5vw;
+      -o-border-radius: 0.5vw;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.103);
       flex: 1;
       &:hover {
@@ -78,31 +98,39 @@ body {
   .plano-form {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
     justify-content: space-between;
     .imagen-plano img {
-      width: 25vw;
-      height: 25vw;
+      width: 28vw;
+      height: 28vw;
       margin-right: 20px;
       object-fit: contain;
+      border: 1px solid rgb(186, 186, 186);
     }
     .formulario {
       width: 60%;
-      .alertaContainer {
-        margin-bottom: 4%;
-        background-color: rgb(195, 244, 204);
-        color: green;
+      .alertaContainer,
+      .alertaErrorContainer {
         text-align: center;
         padding: 0.5vw 4vw;
-        border-radius: 0.8vw;
-        -webkit-border-radius: 0.8vw;
-        -moz-border-radius: 0.8vw;
-        -ms-border-radius: 0.8vw;
-        -o-border-radius: 0.8vw;
+        border-radius: 0.5vw;
+        -webkit-border-radius: 0.5vw;
+        -moz-border-radius: 0.5vw;
+        -ms-border-radius: 0.5vw;
+        -o-border-radius: 0.5vw;
         p {
           margin: 0;
-          font-size: $subtSizePC;
-          font-weight: 500;
+          font-size: $titleSizePC;
+          font-weight: 600;
+        }
+        &.alertaContainer {
+          background-color: rgb(195, 244, 204);
+          color: green;
+          margin-bottom: 4%;
+        }
+        &.alertaErrorContainer {
+          background-color: rgb(244, 195, 195);
+          color: red;
+          margin-top: 2%;
         }
       }
       .loader-container {
@@ -117,62 +145,156 @@ body {
         background-color: rgba(0, 0, 0, 0.5);
         z-index: 1000;
       }
-      .textForm {
-        .subtitulo {
-          font-size: $subtSizePC;
+      form {
+        display: flex;
+        flex-direction: column;
+        .titulo {
+          margin: 0 0 0.4vw 0;
           font-weight: 700;
+          font-size: $titleSizePC;
+          &:not(:first-child) {
+            margin-top: 2vw;
+          }
+          span {
+            font-size: $descrSizePC;
+            color: grey;
+          }
         }
-        form {
+        .columnas {
           display: flex;
           flex-direction: column;
-          // border: 1px solid green;
-          .columnas {
+          // justify-content: space-between;
+          // flex-direction: column-reverse;
+          .medidas,
+          .selectMaterial,
+          .datosCliente {
+            width: 100%;
             display: flex;
-            justify-content: space-between;
-            flex-direction: row-reverse;
-            .datosCliente,
-            .medidas,
-            .selectMaterial {
-              width: 30%;
-            }
-            select {
-              cursor: pointer;
-              width: 100%;
-              height: 2.3vw;
-              margin-top: 1.55vw;
-              font-size: $subtSizePC;
-            }
-            .titulo {
-              margin: 2vw 0 0.5vw 0;
-              font-weight: 700;
-              font-size: $titleSizePC;
-            }
-            label {
-              font-weight: 600;
-              font-size: $subtSizePC;
-            }
             input {
-              margin-bottom: 0.5vw;
+              border: 1px solid rgb(186, 186, 186);
               padding: 2%;
-              width: 100%;
-              font-size: $subtSizePC;
+              font-size: $descrSizePC;
+              height: 2.2vw;
               &::placeholder {
-                font-size: $subtSizePC;
+                font-size: $descrSizePC;
                 color: rgb(156, 156, 156);
               }
             }
+
+            /* .subtitulo {
+                font-size: $subtSizePC;
+                font-weight: 700;
+              } */
+            label {
+              font-size: $descrSizePC;
+            }
           }
-          .submit {
-            background-color: #ff232c;
-            color: #fff;
-            border: none;
-            padding: 5px 0;
-            border-radius: 0.5vw;
-            cursor: pointer;
-            margin-top: 1vw;
+
+          .medidas {
+            div {
+              display: flex;
+              flex-direction: column;
+              input {
+                width: 4vw;
+                @include center;
+                text-align: center;
+                margin-right: 1vw;
+                &::-webkit-inner-spin-button,
+                &::-webkit-outer-spin-button {
+                  -webkit-appearance: none;
+                  appearance: none;
+                  margin: 0;
+                }
+              }
+            }
+          }
+
+          .selectMaterial {
+            justify-content: space-between;
+            .material-option {
+              font-size: $descrSizePC;
+              @include center;
+              text-align: center;
+              padding: 0.25vw;
+              cursor: pointer;
+              transition: all 0.5s;
+              border-radius: 0.5vw;
+              -webkit-border-radius: 0.5vw;
+              -moz-border-radius: 0.5vw;
+              -ms-border-radius: 0.5vw;
+              -o-border-radius: 0.5vw;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.13);
+              width: 19%;
+              &:hover {
+                background-color: rgba(0, 0, 0, 0.096);
+              }
+            }
+          }
+
+          .datosCliente {
+            flex-direction: column;
+            justify-content: space-between;
+            div {
+              display: flex;
+              flex-direction: column;
+              // border: 1px solid red;
+              // width: 19%;
+              input {
+                width: 100%;
+              }
+            }
+            .inputs1 {
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              div {
+                width: 30.6%;
+                margin-bottom: 0.5vw;
+                input {
+                  &::-webkit-inner-spin-button,
+                  &::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                    appearance: none;
+                    margin: 0;
+                  }
+                }
+              }
+            }
+            .inputs2 {
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              div {
+                width: 48%;
+              }
+            }
+          }
+        }
+        .submit {
+          background-color: #ff232c;
+          color: #fff;
+          border: none;
+          // width: 50%;
+          padding: 0.5vw 0;
+          border-radius: 0.5vw;
+          cursor: pointer;
+          margin-top: 2vw;
+          font-size: $titleSizePC;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.302);
+          transition: all 0.5s;
+          &:hover {
+            filter: brightness(0.8);
+            scale: 1.03;
           }
         }
       }
     }
   }
+}
+
+.selected,
+.seleccionada {
+  border: 1px solid rgb(0, 0, 0);
 }
