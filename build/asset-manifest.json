@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/metalurgicaCamsa/build/static/css/main.0a52ad2a.css",
+    "main.css": "/metalurgicaCamsa/build/static/css/main.aaeed958.css",
     "main.js": "/metalurgicaCamsa/build/static/js/main.162a9749.js",
     "static/js/787.c4e7f8f9.chunk.js": "/metalurgicaCamsa/build/static/js/787.c4e7f8f9.chunk.js",
     "static/media/plano1.png": "/metalurgicaCamsa/build/static/media/plano1.74eaff72a5672afa17c2.png",
@@ -188,12 +188,12 @@
     "static/media/categ7.png": "/metalurgicaCamsa/build/static/media/categ7.bf9fa9134415a71667dc.png",
     "static/media/categ5.png": "/metalurgicaCamsa/build/static/media/categ5.e9c32064ff4871665983.png",
     "index.html": "/metalurgicaCamsa/build/index.html",
-    "main.0a52ad2a.css.map": "/metalurgicaCamsa/build/static/css/main.0a52ad2a.css.map",
+    "main.aaeed958.css.map": "/metalurgicaCamsa/build/static/css/main.aaeed958.css.map",
     "main.162a9749.js.map": "/metalurgicaCamsa/build/static/js/main.162a9749.js.map",
     "787.c4e7f8f9.chunk.js.map": "/metalurgicaCamsa/build/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0a52ad2a.css",
+    "static/css/main.aaeed958.css",
     "static/js/main.162a9749.js"
   ]
 }

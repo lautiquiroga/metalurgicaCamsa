@@ -13,7 +13,12 @@ body {
     font-size: $titleSizeBigPC;
   }
   .aviso {
-    background-color: #211a83;
+    background: rgb(8, 30, 57);
+    background: linear-gradient(
+      90deg,
+      rgba(8, 30, 57, 1) 29%,
+      rgba(190, 131, 28, 1) 86%
+    );
     color: white;
     text-align: center;
     padding: 2vw 20vw;
@@ -171,7 +176,7 @@ body {
             width: 100%;
             display: flex;
             input {
-              border: 1px solid rgb(186, 186, 186);
+              border: 1px solid rgb(148, 148, 148);
               padding: 2%;
               font-size: $descrSizePC;
               height: 2.2vw;
@@ -273,15 +278,20 @@ body {
           }
         }
         .submit {
-          background-color: #ff232c;
+          background: rgb(8, 30, 57);
+          background: linear-gradient(
+            90deg,
+            rgba(8, 30, 57, 1) 29%,
+            rgba(190, 131, 28, 1) 86%
+          );
           color: #fff;
           border: none;
           // width: 50%;
-          padding: 0.5vw 0;
+          padding: 0.8vw 0;
           border-radius: 0.5vw;
           cursor: pointer;
-          margin-top: 2vw;
-          font-size: $titleSizePC;
+          margin-top: 2.5vw;
+          font-size: $titleSizeBigPC;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.302);
           transition: all 0.5s;
           &:hover {
@@ -296,5 +306,5 @@ body {
 
 .selected,
 .seleccionada {
-  border: 1px solid rgb(0, 0, 0);
+  border: 2px solid rgb(8, 30, 57);
 }
