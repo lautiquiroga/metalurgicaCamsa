@@ -12,7 +12,7 @@ import categ6 from "../multimedia/anillos guia/categ6.png";
 import categ7 from "../multimedia/anillos de apoyo/categ7.png";
 
 // Imágenes de los planos
-import plano1 from "../multimedia/planos/plano1.jpeg";
+import plano1 from "../multimedia/planos/plano1.png";
 import plano2 from "../multimedia/planos/plano2.png";
 import plano3 from "../multimedia/planos/plano3.png";
 import plano4 from "../multimedia/planos/plano4.png";
@@ -212,6 +212,7 @@ import dst114 from "../multimedia/anillos de apoyo/dst114.jpg";
 
 export default function Home() {
   const [alerta, setAlerta] = useState(false);
+  const [alertaError, setAlertaError] = useState(false);
   const [formData, setFormData] = useState("");
   const [loading, setLoading] = useState(false);
   const categorias = [
@@ -1190,13 +1191,21 @@ export default function Home() {
     if (alerta) {
       const timeout = setTimeout(() => {
         setAlerta(false);
-      }, 3000);
-
+      }, 5000);
       return () => {
         clearTimeout(timeout);
       };
     }
-  }, [alerta]);
+
+    if (alertaError) {
+      const timeout = setTimeout(() => {
+        setAlertaError(false);
+      }, 3000);
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [alerta, alertaError]);
 
   const handleClickCategoria = (categoria) => {
     setCategoriaSeleccionada(categoria);
@@ -1218,7 +1227,41 @@ export default function Home() {
     }));
   };
 
-  const handleSubmit = async (event) => {
+  const handleOptionClick = (value) => {
+    // Obtén el elemento previamente seleccionado si existe
+    const previouslySelectedElement = document.querySelector(
+      ".material-option.selected"
+    );
+
+    // Agrega la clase "selected" al elemento clicado
+    const currentSelectedElement = document.querySelector(
+      `.material-option[value="${value}"]`
+    );
+    if (currentSelectedElement) {
+      currentSelectedElement.classList.add("selected");
+    }
+
+    // Si había un elemento seleccionado previamente, quita la clase "selected"
+    if (previouslySelectedElement) {
+      previouslySelectedElement.classList.remove("selected");
+    }
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      ["material"]: value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (formData.material === undefined) {
+      setAlertaError(true);
+      return;
+    } else {
+      handleSubmit2(event);
+    }
+  };
+  const handleSubmit2 = async (event) => {
     event.preventDefault();
     setLoading(true); // Mostrar el loader
     const form = event.target;
@@ -1227,7 +1270,7 @@ export default function Home() {
     formDataToSend.append("perfil", perfilSeleccionado.nombre);
     const imageResponse = await fetch(perfilSeleccionado.plano);
     const imageBlob = await imageResponse.blob();
-    formDataToSend.append("plano", imageBlob, "plano.jpeg");
+    formDataToSend.append("plano", imageBlob, "plano.jpg");
 
     try {
       const response = await axios.post(form.action, formDataToSend, {
@@ -1281,7 +1324,12 @@ export default function Home() {
             {perfilesPorCategoria[categoriaSeleccionada].map((perfil) => (
               <div
                 key={perfil.nombre}
-                className="perfil"
+                className={`perfil ${
+                  perfilSeleccionado &&
+                  perfilSeleccionado.nombre === perfil.nombre
+                    ? "selected"
+                    : ""
+                }`}
                 onClick={() => handleClickPerfil(perfil)}
               >
                 {/* {perfil.nombre} */}
@@ -1295,7 +1343,9 @@ export default function Home() {
         <>
           {perfilSeleccionado.plano ? (
             <>
-              <p className="titulo">Medidas para {perfilSeleccionado.nombre}</p>
+              <p className="titulo lastTitle">
+                Cotización del sello "{perfilSeleccionado.nombre}"
+              </p>
               <div className="plano-form">
                 <div className="imagen-plano">
                   <img
@@ -1306,282 +1356,321 @@ export default function Home() {
                 <div className="formulario">
                   {alerta && (
                     <div className="alertaContainer">
-                      <p>Enviado con éxito</p>
+                      <p>
+                        Enviado con éxito. <br></br>Te proporcionaremos la
+                        cotización tan pronto como sea posible.
+                      </p>
                     </div>
                   )}
-                  <div className="textForm">
-                    {/* <p className="subtitulo">
-                      Cada campo de medida se relaciona directamente con una
-                      dimensión específica en el perfil, comenzando desde la
-                      medida que está más arriba y avanzando hacia abajo.
-                    </p> */}
 
-                    <form
-                      id="form"
-                      action="https://formsubmit.co/lautiquiroga10@gmail.com"
-                      method="POST"
-                      name="medidas-camsa"
-                      onSubmit={handleSubmit}
-                    >
-                      <input
-                        type="hidden"
-                        name="_subject"
-                        value="Medidas CAMSA"
-                      />
-                      <input type="hidden" name="_captcha" value="false" />
-                      <div className="columnas">
-                        <div className="datosCliente">
-                          <p className="titulo">Escribe tus datos</p>
-                          <label htmlFor="nombre">Nombre y Apellido:</label>
-                          <input
-                            type="text"
-                            id="nombre"
-                            name="nombre"
-                            placeholder="Escribe tu nombre y apellido"
-                            value={formData[`nombre`] || ""}
-                            onChange={handleInputChange}
-                            required
-                          />
+                  <form
+                    id="form"
+                    action="https://formsubmit.co/lautiquiroga10@gmail.com"
+                    method="POST"
+                    name="medidas-camsa"
+                    onSubmit={handleSubmit}
+                  >
+                    <input
+                      type="hidden"
+                      name="_subject"
+                      value="Medidas CAMSA"
+                    />
+                    <input type="hidden" name="_captcha" value="false" />
+                    <div className="columnas">
+                      <p className="titulo">
+                        Escribe las medidas <span>(en milímetros)</span>
+                      </p>
+                      <div className="medidas">
+                        <input
+                          type="hidden"
+                          name="categoria"
+                          value={categoriaSeleccionada}
+                        />
+                        <input
+                          type="hidden"
+                          name="perfil"
+                          value={perfilSeleccionado.nombre}
+                        />
+                        <input
+                          type="hidden"
+                          name="material"
+                          value={formData.material || ""}
+                        />
 
-                          <label htmlFor="email">Email:</label>
-                          <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Escribe tu email"
-                            value={formData[`email`] || ""}
-                            onChange={handleInputChange}
-                            required
-                          />
-
-                          <label htmlFor="telefono">Teléfono:</label>
-                          <input
-                            type="number"
-                            id="telefono"
-                            name="telefono"
-                            placeholder="Escribe tu teléfono"
-                            value={formData[`telefono`] || ""}
-                            onChange={handleInputChange}
-                            required
-                          />
-
-                          <label htmlFor="empresa">Nombre de tu empresa:</label>
-                          <input
-                            type="text"
-                            id="empresa"
-                            name="empresa"
-                            placeholder="Nombre de tu empresa"
-                            value={formData[`empresa`] || ""}
-                            onChange={handleInputChange}
-                            required
-                          />
-
-                          <label htmlFor="CUIL_CUIT">CUIL/CUIT:</label>
-                          <input
-                            type="number"
-                            id="CUIL_CUIT"
-                            name="CUIL_CUIT"
-                            placeholder="CUIL/CUIT"
-                            value={formData[`CUIL_CUIT`] || ""}
-                            onChange={handleInputChange}
-                            required
-                          />
-                        </div>
-
-                        <div className="selectMaterial">
-                          <label className="titulo" htmlFor="material">
-                            Elige el material
-                          </label>
-                          <select
-                            name="material"
-                            id="material"
-                            onChange={handleInputChange}
-                            value={formData["material"] || ""}
-                            required
-                          >
-                            <option value="" hidden>
-                              Materiales
-                            </option>
-                            <option value="HPU - Elastomero Termoplastico Rojo">
-                              HPU - Elastomero Termoplastico Rojo
-                            </option>
-                            <option value="POM - Plastico - Delring Blanco">
-                              POM - Plastico - Delring Blanco
-                            </option>
-                            <option value="PTFE - Teflon + 40% Bronce">
-                              PTFE - Teflon + 40% Bronce
-                            </option>
-                            <option value="NRB - Goma">NRB - Goma</option>
-                            <option value="FPM - Viton">FPM - Viton</option>
-                          </select>
-                        </div>
-
-                        <div className="medidas">
-                          <p className="titulo">Escribe las medidas</p>
-                          <input
-                            type="hidden"
-                            name="categoria"
-                            value={categoriaSeleccionada}
-                          />
-                          <input
-                            type="hidden"
-                            name="perfil"
-                            value={perfilSeleccionado.nombre}
-                          />
-
-                          {perfilSeleccionado.planoNombre === "plano3" ||
-                          perfilSeleccionado.planoNombre === "plano7" ||
-                          perfilSeleccionado.planoNombre === "plano8" ||
-                          perfilSeleccionado.planoNombre === "plano9" ||
-                          perfilSeleccionado.planoNombre === "plano11" ||
-                          perfilSeleccionado.planoNombre === "plano12" ? (
-                            <>
-                              {Array.from({ length: 3 }, (_, index) => (
-                                <div key={index}>
-                                  <label
-                                    htmlFor={`Medida-${String.fromCharCode(
-                                      65 + index
-                                    )}`}
-                                  >
-                                    {`Medida ${String.fromCharCode(
-                                      65 + index
-                                    )}`}
-                                  </label>
-                                  <input
-                                    type="number"
-                                    name={`Medida-${String.fromCharCode(
-                                      65 + index
-                                    )}`}
-                                    placeholder={`Medida ${String.fromCharCode(
-                                      65 + index
-                                    )} (en milímetros)`}
-                                    value={
-                                      formData[
-                                        `Medida-${String.fromCharCode(
-                                          65 + index
-                                        )}`
-                                      ] || ""
-                                    }
-                                    onChange={handleInputChange}
-                                    required
-                                  />
-                                </div>
-                              ))}
-                            </>
-                          ) : perfilSeleccionado.planoNombre === "plano1" ||
-                            perfilSeleccionado.planoNombre === "plano2" ||
-                            perfilSeleccionado.planoNombre === "plano4" ||
-                            perfilSeleccionado.planoNombre === "plano5" ? (
-                            <>
-                              {Array.from({ length: 4 }, (_, index) => (
-                                <div key={index}>
-                                  <label
-                                    htmlFor={`Medida-${String.fromCharCode(
-                                      65 + index
-                                    )}`}
-                                  >
-                                    {`Medida ${String.fromCharCode(
-                                      65 + index
-                                    )}`}
-                                  </label>
-                                  <input
-                                    type="number"
-                                    name={`Medida-${String.fromCharCode(
-                                      65 + index
-                                    )}`}
-                                    placeholder={`Medida ${String.fromCharCode(
-                                      65 + index
-                                    )} (en milímetros)`}
-                                    value={
-                                      formData[
-                                        `Medida-${String.fromCharCode(
-                                          65 + index
-                                        )}`
-                                      ] || ""
-                                    }
-                                    onChange={handleInputChange}
-                                    required
-                                  />
-                                </div>
-                              ))}
-                            </>
-                          ) : perfilSeleccionado.planoNombre === "plano6" ? (
-                            <>
-                              {Array.from({ length: 5 }, (_, index) => (
-                                <div key={index}>
-                                  <label
-                                    htmlFor={`Medida-${String.fromCharCode(
-                                      65 + index
-                                    )}`}
-                                  >
-                                    {`Medida ${String.fromCharCode(
-                                      65 + index
-                                    )}`}
-                                  </label>
-                                  <input
-                                    type="number"
-                                    name={`Medida-${String.fromCharCode(
-                                      65 + index
-                                    )}`}
-                                    placeholder={`Medida ${String.fromCharCode(
-                                      65 + index
-                                    )} (en milímetros)`}
-                                    value={
-                                      formData[
-                                        `Medida-${String.fromCharCode(
-                                          65 + index
-                                        )}`
-                                      ] || ""
-                                    }
-                                    onChange={handleInputChange}
-                                    required
-                                  />
-                                </div>
-                              ))}
-                            </>
-                          ) : (
-                            <>
-                              {Array.from({ length: 2 }, (_, index) => (
-                                <div key={index}>
-                                  <label
-                                    htmlFor={`Medida-${String.fromCharCode(
-                                      65 + index
-                                    )}`}
-                                  >
-                                    {`Medida ${String.fromCharCode(
-                                      65 + index
-                                    )}`}
-                                  </label>
-                                  <input
-                                    type="number"
-                                    name={`Medida-${String.fromCharCode(
-                                      65 + index
-                                    )}`}
-                                    placeholder={`Medida ${String.fromCharCode(
-                                      65 + index
-                                    )} (en milímetros)`}
-                                    value={
-                                      formData[
-                                        `Medida-${String.fromCharCode(
-                                          65 + index
-                                        )}`
-                                      ] || ""
-                                    }
-                                    onChange={handleInputChange}
-                                    required
-                                  />
-                                </div>
-                              ))}
-                            </>
-                          )}
-                        </div>
+                        {perfilSeleccionado.planoNombre === "plano3" ||
+                        perfilSeleccionado.planoNombre === "plano7" ||
+                        perfilSeleccionado.planoNombre === "plano8" ||
+                        perfilSeleccionado.planoNombre === "plano9" ||
+                        perfilSeleccionado.planoNombre === "plano11" ||
+                        perfilSeleccionado.planoNombre === "plano12" ? (
+                          <>
+                            {Array.from({ length: 3 }, (_, index) => (
+                              <div key={index}>
+                                <label
+                                  htmlFor={`Medida-${String.fromCharCode(
+                                    65 + index
+                                  )}`}
+                                >
+                                  {"Medida " + String.fromCharCode(65 + index)}
+                                </label>
+                                <input
+                                  type="number"
+                                  name={`Medida-${String.fromCharCode(
+                                    65 + index
+                                  )}`}
+                                  placeholder={String.fromCharCode(65 + index)}
+                                  value={
+                                    formData[
+                                      `Medida-${String.fromCharCode(
+                                        65 + index
+                                      )}`
+                                    ] || ""
+                                  }
+                                  onChange={handleInputChange}
+                                  required
+                                />
+                              </div>
+                            ))}
+                          </>
+                        ) : perfilSeleccionado.planoNombre === "plano1" ||
+                          perfilSeleccionado.planoNombre === "plano2" ||
+                          perfilSeleccionado.planoNombre === "plano4" ||
+                          perfilSeleccionado.planoNombre === "plano5" ? (
+                          <>
+                            {Array.from({ length: 4 }, (_, index) => (
+                              <div key={index}>
+                                <label
+                                  htmlFor={`Medida-${String.fromCharCode(
+                                    65 + index
+                                  )}`}
+                                >
+                                  {"Medida " + String.fromCharCode(65 + index)}
+                                </label>
+                                <input
+                                  type="number"
+                                  name={`Medida-${String.fromCharCode(
+                                    65 + index
+                                  )}`}
+                                  placeholder={String.fromCharCode(65 + index)}
+                                  value={
+                                    formData[
+                                      `Medida-${String.fromCharCode(
+                                        65 + index
+                                      )}`
+                                    ] || ""
+                                  }
+                                  onChange={handleInputChange}
+                                  required
+                                />
+                              </div>
+                            ))}
+                          </>
+                        ) : perfilSeleccionado.planoNombre === "plano6" ? (
+                          <>
+                            {Array.from({ length: 5 }, (_, index) => (
+                              <div key={index}>
+                                <label
+                                  htmlFor={`Medida-${String.fromCharCode(
+                                    65 + index
+                                  )}`}
+                                >
+                                  {"Medida " + String.fromCharCode(65 + index)}
+                                </label>
+                                <input
+                                  type="number"
+                                  name={`Medida-${String.fromCharCode(
+                                    65 + index
+                                  )}`}
+                                  placeholder={String.fromCharCode(65 + index)}
+                                  value={
+                                    formData[
+                                      `Medida-${String.fromCharCode(
+                                        65 + index
+                                      )}`
+                                    ] || ""
+                                  }
+                                  onChange={handleInputChange}
+                                  required
+                                />
+                              </div>
+                            ))}
+                          </>
+                        ) : (
+                          <>
+                            {Array.from({ length: 2 }, (_, index) => (
+                              <div key={index}>
+                                <label
+                                  htmlFor={`Medida-${String.fromCharCode(
+                                    65 + index
+                                  )}`}
+                                >
+                                  {"Medida " + String.fromCharCode(65 + index)}
+                                </label>
+                                <input
+                                  type="number"
+                                  name={`Medida-${String.fromCharCode(
+                                    65 + index
+                                  )}`}
+                                  placeholder={String.fromCharCode(65 + index)}
+                                  value={
+                                    formData[
+                                      `Medida-${String.fromCharCode(
+                                        65 + index
+                                      )}`
+                                    ] || ""
+                                  }
+                                  onChange={handleInputChange}
+                                  required
+                                />
+                              </div>
+                            ))}
+                          </>
+                        )}
                       </div>
 
-                      <button type="submit" className="submit">
-                        Enviar
-                      </button>
-                    </form>
-                  </div>
+                      <p className="titulo">Elige el material</p>
+                      <div className="selectMaterial">
+                        <div
+                          onClick={() =>
+                            handleOptionClick(
+                              "HPU - Elastomero Termoplastico Rojo"
+                            )
+                          }
+                          className={`material-option ${
+                            formData.material ===
+                            "HPU - Elastomero Termoplastico Rojo"
+                              ? "selected"
+                              : ""
+                          }`}
+                        >
+                          HPU - Elastomero Termoplastico Rojo
+                        </div>
+                        <div
+                          onClick={() =>
+                            handleOptionClick("POM - Plastico - Delring Blanco")
+                          }
+                          className={`material-option ${
+                            formData.material ===
+                            "POM - Plastico - Delring Blanco"
+                              ? "selected"
+                              : ""
+                          }`}
+                        >
+                          POM - Plastico - Delring Blanco
+                        </div>
+                        <div
+                          onClick={() =>
+                            handleOptionClick("PTFE - Teflon + 40% Bronce")
+                          }
+                          className={`material-option ${
+                            formData.material === "PTFE - Teflon + 40% Bronce"
+                              ? "selected"
+                              : ""
+                          }`}
+                        >
+                          PTFE - Teflon + 40% Bronce
+                        </div>
+                        <div
+                          onClick={() => handleOptionClick("NRB - Goma")}
+                          className={`material-option ${
+                            formData.material === "NRB - Goma" ? "selected" : ""
+                          }`}
+                        >
+                          NRB - Goma
+                        </div>
+                        <div
+                          onClick={() => handleOptionClick("FPM - Viton")}
+                          className={`material-option ${
+                            formData.material === "FPM - Viton"
+                              ? "selected"
+                              : ""
+                          }`}
+                        >
+                          FPM - Viton
+                        </div>
+                      </div>
+                      {alertaError && (
+                        <div className="alertaErrorContainer">
+                          <p>Debes seleccionar un material</p>
+                        </div>
+                      )}
+                      <p className="titulo">Escribe tus datos</p>
+                      <div className="datosCliente">
+                        <div className="inputs1">
+                          <div>
+                            <label htmlFor="nombre">Nombre y Apellido:</label>
+                            <input
+                              type="text"
+                              id="nombre"
+                              name="nombre"
+                              placeholder="Escribe tu nombre y apellido"
+                              value={formData[`nombre`] || ""}
+                              onChange={handleInputChange}
+                              required
+                            />
+                          </div>
+
+                          <div>
+                            <label htmlFor="telefono">Teléfono:</label>
+                            <input
+                              type="number"
+                              id="telefono"
+                              name="telefono"
+                              placeholder="Escribe tu teléfono"
+                              value={formData[`telefono`] || ""}
+                              onChange={handleInputChange}
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label htmlFor="CUIL_CUIT">CUIL/CUIT:</label>
+                            <input
+                              type="number"
+                              id="CUIL_CUIT"
+                              name="CUIL_CUIT"
+                              placeholder="CUIL/CUIT"
+                              value={formData[`CUIL_CUIT`] || ""}
+                              onChange={handleInputChange}
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        <div className="inputs2">
+                          <div>
+                            <label htmlFor="email">Email:</label>
+                            <input
+                              type="email"
+                              id="email"
+                              name="email"
+                              placeholder="Escribe tu email"
+                              value={formData[`email`] || ""}
+                              onChange={handleInputChange}
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label htmlFor="empresa">
+                              Nombre de tu empresa:
+                            </label>
+                            <input
+                              type="text"
+                              id="empresa"
+                              name="empresa"
+                              placeholder="Escribe el nombre de tu empresa"
+                              value={formData[`empresa`] || ""}
+                              onChange={handleInputChange}
+                              required
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button type="submit" className="submit">
+                      Solicitar cotización
+                    </button>
+                  </form>
                   {loading && (
                     <div className="loader-container">
                       <ClipLoader
@@ -1595,7 +1684,7 @@ export default function Home() {
               </div>
             </>
           ) : (
-            <div className="titulo">
+            <div className="aviso">
               Contactáte con nosotros para recibir más información sobre el
               perfil "{perfilSeleccionado.nombre}" en menos de 24hs.
             </div>
