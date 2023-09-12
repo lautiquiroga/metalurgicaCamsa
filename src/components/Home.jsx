@@ -1365,7 +1365,7 @@ export default function Home() {
 
                   <form
                     id="form"
-                    action="https://formsubmit.co/lautiquiroga10@gmail.com"
+                    action="https://formsubmit.co/camsaseals@gmail.com"
                     method="POST"
                     name="medidas-camsa"
                     onSubmit={handleSubmit}
@@ -1378,7 +1378,7 @@ export default function Home() {
                     <input type="hidden" name="_captcha" value="false" />
                     <div className="columnas">
                       <p className="titulo">
-                        Escribe las medidas <span>(en milímetros)</span>
+                        Escriba las medidas <span>(en milímetros)</span>
                       </p>
                       <div className="medidas">
                         <input
@@ -1528,7 +1528,7 @@ export default function Home() {
                         )}
                       </div>
 
-                      <p className="titulo">Elige el material</p>
+                      <p className="titulo">Seleccione el material</p>
                       <div className="selectMaterial">
                         <div
                           onClick={() =>
@@ -1594,7 +1594,7 @@ export default function Home() {
                           <p>Debes seleccionar un material</p>
                         </div>
                       )}
-                      <p className="titulo">Escribe tus datos</p>
+                      <p className="titulo">Complete con sus datos</p>
                       <div className="datosCliente">
                         <div className="inputs1">
                           <div>
@@ -1603,7 +1603,7 @@ export default function Home() {
                               type="text"
                               id="nombre"
                               name="nombre"
-                              placeholder="Escribe tu nombre y apellido"
+                              placeholder="Escriba su nombre y apellido"
                               value={formData[`nombre`] || ""}
                               onChange={handleInputChange}
                               required
@@ -1616,7 +1616,7 @@ export default function Home() {
                               type="number"
                               id="telefono"
                               name="telefono"
-                              placeholder="Escribe tu teléfono"
+                              placeholder="Escriba su teléfono"
                               value={formData[`telefono`] || ""}
                               onChange={handleInputChange}
                               required
@@ -1643,7 +1643,7 @@ export default function Home() {
                               type="email"
                               id="email"
                               name="email"
-                              placeholder="Escribe tu email"
+                              placeholder="Escriba su email"
                               value={formData[`email`] || ""}
                               onChange={handleInputChange}
                               required
@@ -1651,13 +1651,13 @@ export default function Home() {
                           </div>
                           <div>
                             <label htmlFor="empresa">
-                              Nombre de tu empresa:
+                              Nombre de su empresa:
                             </label>
                             <input
                               type="text"
                               id="empresa"
                               name="empresa"
-                              placeholder="Escribe el nombre de tu empresa"
+                              placeholder="Escriba el nombre de su empresa"
                               value={formData[`empresa`] || ""}
                               onChange={handleInputChange}
                               required
