@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { ClipLoader } from "react-spinners";
 
 // Imágenes de las categorías
@@ -1227,6 +1227,17 @@ export default function Home() {
     }));
   };
 
+  const handleImageChange = (event) => {
+    const { name, files } = event.target;
+    if (files.length > 0) {
+      const selectedImage = files[0]; // Tomar la primera imagen seleccionada
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: selectedImage,
+      }));
+    }
+  };
+
   const handleOptionClick = (value) => {
     // Obtén el elemento previamente seleccionado si existe
     const previouslySelectedElement = document.querySelector(
@@ -1271,24 +1282,39 @@ export default function Home() {
     const imageResponse = await fetch(perfilSeleccionado.plano);
     const imageBlob = await imageResponse.blob();
     formDataToSend.append("plano", imageBlob, "plano.jpg");
+    const emailAddresses = [
+      "lautiquiroga10@gmail.com",
+      "lautiquiroga@hotmail.com",
+    ];
 
-    try {
-      const response = await axios.post(form.action, formDataToSend, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+    // Verifica si se ha seleccionado una imagen antes de agregarla
+    if (formData.imagen instanceof File) {
+      formDataToSend.append("imagen", formData.imagen, "imagen.jpg");
+    }
 
-      if (response.status === 200) {
-        setAlerta(true);
-        setFormData("");
-      } else {
-        console.error("Error al enviar el formulario");
+    for (const emailAddress of emailAddresses) {
+      try {
+        const response = await fetch(`https://formsubmit.co/${emailAddress}`, {
+          method: "POST",
+          body: formDataToSend,
+          headers: {
+            // Especifica los encabezados necesarios según tu servicio de envío de formularios
+          },
+        });
+
+        if (response.status === 200) {
+          // Maneja el éxito del envío aquí
+          setAlerta(true);
+          setFormData("");
+          console.log(`Formulario enviado a ${emailAddress}`);
+        } else {
+          console.error(`Error al enviar el formulario a ${emailAddress}`);
+        }
+      } catch (error) {
+        console.error(`Error al enviar el formulario a ${emailAddress}`, error);
+      } finally {
+        setLoading(false); // Ocultar el loader después del envío
       }
-    } catch (error) {
-      console.error("Error al enviar el formulario", error);
-    } finally {
-      setLoading(false); // Ocultar el loader después del envío
     }
   };
 
@@ -1309,7 +1335,12 @@ export default function Home() {
                 onClick={() => handleClickCategoria(categoria.nombre)}
               >
                 {/* {categoria.nombre} */}
-                <img src={categoria.imagen} alt={categoria.nombre} />
+                <img
+                  src={categoria.imagen}
+                  alt={categoria.nombre}
+                  decoding="async"
+                  loading="lazy"
+                />
               </div>
             ))}
         </div>
@@ -1333,7 +1364,12 @@ export default function Home() {
                 onClick={() => handleClickPerfil(perfil)}
               >
                 {/* {perfil.nombre} */}
-                <img src={perfil.imagenPerfil} alt={perfil.nombre} />
+                <img
+                  src={perfil.imagenPerfil}
+                  alt={perfil.nombre}
+                  decoding="async"
+                  loading="lazy"
+                />
               </div>
             ))}
           </div>
@@ -1351,6 +1387,8 @@ export default function Home() {
                   <img
                     src={perfilSeleccionado.plano}
                     alt={perfilSeleccionado.nombre}
+                    decoding="async"
+                    loading="lazy"
                   />
                 </div>
                 <div className="formulario">
@@ -1365,7 +1403,8 @@ export default function Home() {
 
                   <form
                     id="form"
-                    action="https://formsubmit.co/camsaseals@gmail.com"
+                    // action="https://formsubmit.co/camsaseals@gmail.com"
+                    action="https://formsubmit.co/lautiquiroga10@gmail.com"
                     method="POST"
                     name="medidas-camsa"
                     onSubmit={handleSubmit}
@@ -1377,155 +1416,189 @@ export default function Home() {
                     />
                     <input type="hidden" name="_captcha" value="false" />
                     <div className="columnas">
-                      <p className="titulo">
-                        Escriba las medidas <span>(en milímetros)</span>
-                      </p>
-                      <div className="medidas">
-                        <input
-                          type="hidden"
-                          name="categoria"
-                          value={categoriaSeleccionada}
-                        />
-                        <input
-                          type="hidden"
-                          name="perfil"
-                          value={perfilSeleccionado.nombre}
-                        />
-                        <input
-                          type="hidden"
-                          name="material"
-                          value={formData.material || ""}
-                        />
+                      <div className="medidasArchivo">
+                        <div className="medidasTituloInputs">
+                          <p className="titulo">
+                            Escriba las medidas <span>(en milímetros)</span>
+                          </p>
+                          <div className="medidas">
+                            <input
+                              type="hidden"
+                              name="categoria"
+                              value={categoriaSeleccionada}
+                            />
+                            <input
+                              type="hidden"
+                              name="perfil"
+                              value={perfilSeleccionado.nombre}
+                            />
+                            <input
+                              type="hidden"
+                              name="material"
+                              value={formData.material || ""}
+                            />
 
-                        {perfilSeleccionado.planoNombre === "plano3" ||
-                        perfilSeleccionado.planoNombre === "plano7" ||
-                        perfilSeleccionado.planoNombre === "plano8" ||
-                        perfilSeleccionado.planoNombre === "plano9" ||
-                        perfilSeleccionado.planoNombre === "plano11" ||
-                        perfilSeleccionado.planoNombre === "plano12" ? (
-                          <>
-                            {Array.from({ length: 3 }, (_, index) => (
-                              <div key={index}>
-                                <label
-                                  htmlFor={`Medida-${String.fromCharCode(
-                                    65 + index
-                                  )}`}
-                                >
-                                  {"Medida " + String.fromCharCode(65 + index)}
-                                </label>
-                                <input
-                                  type="number"
-                                  name={`Medida-${String.fromCharCode(
-                                    65 + index
-                                  )}`}
-                                  placeholder={String.fromCharCode(65 + index)}
-                                  value={
-                                    formData[
-                                      `Medida-${String.fromCharCode(
+                            {perfilSeleccionado.planoNombre === "plano3" ||
+                            perfilSeleccionado.planoNombre === "plano7" ||
+                            perfilSeleccionado.planoNombre === "plano8" ||
+                            perfilSeleccionado.planoNombre === "plano9" ||
+                            perfilSeleccionado.planoNombre === "plano11" ||
+                            perfilSeleccionado.planoNombre === "plano12" ? (
+                              <>
+                                {Array.from({ length: 3 }, (_, index) => (
+                                  <div key={index}>
+                                    <label
+                                      htmlFor={`Medida-${String.fromCharCode(
                                         65 + index
-                                      )}`
-                                    ] || ""
-                                  }
-                                  onChange={handleInputChange}
-                                  required
-                                />
-                              </div>
-                            ))}
-                          </>
-                        ) : perfilSeleccionado.planoNombre === "plano1" ||
-                          perfilSeleccionado.planoNombre === "plano2" ||
-                          perfilSeleccionado.planoNombre === "plano4" ||
-                          perfilSeleccionado.planoNombre === "plano5" ? (
-                          <>
-                            {Array.from({ length: 4 }, (_, index) => (
-                              <div key={index}>
-                                <label
-                                  htmlFor={`Medida-${String.fromCharCode(
-                                    65 + index
-                                  )}`}
-                                >
-                                  {"Medida " + String.fromCharCode(65 + index)}
-                                </label>
-                                <input
-                                  type="number"
-                                  name={`Medida-${String.fromCharCode(
-                                    65 + index
-                                  )}`}
-                                  placeholder={String.fromCharCode(65 + index)}
-                                  value={
-                                    formData[
-                                      `Medida-${String.fromCharCode(
+                                      )}`}
+                                    >
+                                      {"Medida " +
+                                        String.fromCharCode(65 + index)}
+                                    </label>
+                                    <input
+                                      type="number"
+                                      name={`Medida-${String.fromCharCode(
                                         65 + index
-                                      )}`
-                                    ] || ""
-                                  }
-                                  onChange={handleInputChange}
-                                  required
-                                />
-                              </div>
-                            ))}
-                          </>
-                        ) : perfilSeleccionado.planoNombre === "plano6" ? (
-                          <>
-                            {Array.from({ length: 5 }, (_, index) => (
-                              <div key={index}>
-                                <label
-                                  htmlFor={`Medida-${String.fromCharCode(
-                                    65 + index
-                                  )}`}
-                                >
-                                  {"Medida " + String.fromCharCode(65 + index)}
-                                </label>
-                                <input
-                                  type="number"
-                                  name={`Medida-${String.fromCharCode(
-                                    65 + index
-                                  )}`}
-                                  placeholder={String.fromCharCode(65 + index)}
-                                  value={
-                                    formData[
-                                      `Medida-${String.fromCharCode(
+                                      )}`}
+                                      placeholder={String.fromCharCode(
                                         65 + index
-                                      )}`
-                                    ] || ""
-                                  }
-                                  onChange={handleInputChange}
-                                  required
-                                />
-                              </div>
-                            ))}
-                          </>
-                        ) : (
-                          <>
-                            {Array.from({ length: 2 }, (_, index) => (
-                              <div key={index}>
-                                <label
-                                  htmlFor={`Medida-${String.fromCharCode(
-                                    65 + index
-                                  )}`}
-                                >
-                                  {"Medida " + String.fromCharCode(65 + index)}
-                                </label>
-                                <input
-                                  type="number"
-                                  name={`Medida-${String.fromCharCode(
-                                    65 + index
-                                  )}`}
-                                  placeholder={String.fromCharCode(65 + index)}
-                                  value={
-                                    formData[
-                                      `Medida-${String.fromCharCode(
+                                      )}
+                                      value={
+                                        formData[
+                                          `Medida-${String.fromCharCode(
+                                            65 + index
+                                          )}`
+                                        ] || ""
+                                      }
+                                      onChange={handleInputChange}
+                                      required
+                                    />
+                                  </div>
+                                ))}
+                              </>
+                            ) : perfilSeleccionado.planoNombre === "plano1" ||
+                              perfilSeleccionado.planoNombre === "plano2" ||
+                              perfilSeleccionado.planoNombre === "plano4" ||
+                              perfilSeleccionado.planoNombre === "plano5" ? (
+                              <>
+                                {Array.from({ length: 4 }, (_, index) => (
+                                  <div key={index}>
+                                    <label
+                                      htmlFor={`Medida-${String.fromCharCode(
                                         65 + index
-                                      )}`
-                                    ] || ""
-                                  }
-                                  onChange={handleInputChange}
-                                  required
-                                />
-                              </div>
-                            ))}
-                          </>
-                        )}
+                                      )}`}
+                                    >
+                                      {"Medida " +
+                                        String.fromCharCode(65 + index)}
+                                    </label>
+                                    <input
+                                      type="number"
+                                      name={`Medida-${String.fromCharCode(
+                                        65 + index
+                                      )}`}
+                                      placeholder={String.fromCharCode(
+                                        65 + index
+                                      )}
+                                      value={
+                                        formData[
+                                          `Medida-${String.fromCharCode(
+                                            65 + index
+                                          )}`
+                                        ] || ""
+                                      }
+                                      onChange={handleInputChange}
+                                      required
+                                    />
+                                  </div>
+                                ))}
+                              </>
+                            ) : perfilSeleccionado.planoNombre === "plano6" ? (
+                              <>
+                                {Array.from({ length: 5 }, (_, index) => (
+                                  <div key={index}>
+                                    <label
+                                      htmlFor={`Medida-${String.fromCharCode(
+                                        65 + index
+                                      )}`}
+                                    >
+                                      {"Medida " +
+                                        String.fromCharCode(65 + index)}
+                                    </label>
+                                    <input
+                                      type="number"
+                                      name={`Medida-${String.fromCharCode(
+                                        65 + index
+                                      )}`}
+                                      placeholder={String.fromCharCode(
+                                        65 + index
+                                      )}
+                                      value={
+                                        formData[
+                                          `Medida-${String.fromCharCode(
+                                            65 + index
+                                          )}`
+                                        ] || ""
+                                      }
+                                      onChange={handleInputChange}
+                                      required
+                                    />
+                                  </div>
+                                ))}
+                              </>
+                            ) : (
+                              <>
+                                {Array.from({ length: 2 }, (_, index) => (
+                                  <div key={index}>
+                                    <label
+                                      htmlFor={`Medida-${String.fromCharCode(
+                                        65 + index
+                                      )}`}
+                                    >
+                                      {"Medida " +
+                                        String.fromCharCode(65 + index)}
+                                    </label>
+                                    <input
+                                      type="number"
+                                      name={`Medida-${String.fromCharCode(
+                                        65 + index
+                                      )}`}
+                                      placeholder={String.fromCharCode(
+                                        65 + index
+                                      )}
+                                      value={
+                                        formData[
+                                          `Medida-${String.fromCharCode(
+                                            65 + index
+                                          )}`
+                                        ] || ""
+                                      }
+                                      onChange={handleInputChange}
+                                      required
+                                    />
+                                  </div>
+                                ))}
+                              </>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="archivoTituloInputs">
+                          <p className="titulo">
+                            Subir imagen <span>(opcional)</span>
+                          </p>
+                          <div className="archivo">
+                            <label htmlFor="imagen">
+                              Seleccionar imagen para enviar
+                            </label>
+                            <input
+                              type="file"
+                              name="imagen"
+                              accept="image/*" // Esto limitará la selección a archivos de imagen
+                              onChange={handleImageChange}
+                              // required
+                            />
+                          </div>
+                        </div>
                       </div>
 
                       <p className="titulo">Seleccione el material</p>

@@ -194,21 +194,47 @@ body {
               font-size: $descrSizePC;
             }
           }
-
-          .medidas {
-            div {
-              display: flex;
-              flex-direction: column;
-              input {
-                width: 4vw;
-                @include center;
-                text-align: center;
-                margin-right: 1vw;
-                &::-webkit-inner-spin-button,
-                &::-webkit-outer-spin-button {
-                  -webkit-appearance: none;
-                  appearance: none;
-                  margin: 0;
+          .medidasArchivo {
+            display: flex;
+            justify-content: space-between;
+            .medidasTituloInputs {
+              .medidas {
+                div {
+                  display: flex;
+                  flex-direction: column;
+                  input {
+                    width: 4vw;
+                    @include center;
+                    text-align: center;
+                    margin-right: 1vw;
+                    &::-webkit-inner-spin-button,
+                    &::-webkit-outer-spin-button {
+                      -webkit-appearance: none;
+                      appearance: none;
+                      margin: 0;
+                    }
+                  }
+                }
+              }
+            }
+            .archivoTituloInputs {
+              .archivo {
+                display: flex;
+                flex-direction: column;
+                label {
+                  font-size: $descrSizePC;
+                }
+                input {
+                  cursor: pointer;
+                  @include center;
+                  width: 21vw;
+                  border: 1px solid rgb(148, 148, 148);
+                  font-size: $descrSizePC;
+                  padding: 0.3vw 0.3vw;
+                  &::placeholder {
+                    font-size: $descrSizePC;
+                    color: rgb(156, 156, 156);
+                  }
                 }
               }
             }
