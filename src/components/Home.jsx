@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { ClipLoader } from "react-spinners";
 
 // Imágenes de las categorías
@@ -1335,7 +1335,12 @@ export default function Home() {
                 onClick={() => handleClickCategoria(categoria.nombre)}
               >
                 {/* {categoria.nombre} */}
-                <img src={categoria.imagen} alt={categoria.nombre} />
+                <img
+                  src={categoria.imagen}
+                  alt={categoria.nombre}
+                  decoding="async"
+                  loading="lazy"
+                />
               </div>
             ))}
         </div>
@@ -1359,7 +1364,12 @@ export default function Home() {
                 onClick={() => handleClickPerfil(perfil)}
               >
                 {/* {perfil.nombre} */}
-                <img src={perfil.imagenPerfil} alt={perfil.nombre} />
+                <img
+                  src={perfil.imagenPerfil}
+                  alt={perfil.nombre}
+                  decoding="async"
+                  loading="lazy"
+                />
               </div>
             ))}
           </div>
@@ -1377,6 +1387,8 @@ export default function Home() {
                   <img
                     src={perfilSeleccionado.plano}
                     alt={perfilSeleccionado.nombre}
+                    decoding="async"
+                    loading="lazy"
                   />
                 </div>
                 <div className="formulario">
