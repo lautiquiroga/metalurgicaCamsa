@@ -225,6 +225,7 @@ body {
                   font-size: $descrSizePC;
                 }
                 input {
+                  cursor: pointer;
                   @include center;
                   width: 21vw;
                   border: 1px solid rgb(148, 148, 148);

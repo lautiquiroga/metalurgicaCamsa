@@ -1279,15 +1279,19 @@ export default function Home() {
     const formDataToSend = new FormData(form);
     formDataToSend.append("categoria", categoriaSeleccionada);
     formDataToSend.append("perfil", perfilSeleccionado.nombre);
+    const imageResponse = await fetch(perfilSeleccionado.plano);
+    const imageBlob = await imageResponse.blob();
+    formDataToSend.append("plano", imageBlob, "plano.jpg");
     const emailAddresses = [
       "lautiquiroga10@gmail.com",
       "lautiquiroga@hotmail.com",
     ];
-    // Agregar la imagen al FormData
-    formDataToSend.append("imagen", formData.imagen, "imagen.jpg");
-    const imageResponse = await fetch(perfilSeleccionado.plano);
-    const imageBlob = await imageResponse.blob();
-    formDataToSend.append("plano", imageBlob, "plano.jpg");
+
+    // Verifica si se ha seleccionado una imagen antes de agregarla
+    if (formData.imagen instanceof File) {
+      formDataToSend.append("imagen", formData.imagen, "imagen.jpg");
+    }
+
     for (const emailAddress of emailAddresses) {
       try {
         const response = await fetch(`https://formsubmit.co/${emailAddress}`, {
@@ -1312,25 +1316,6 @@ export default function Home() {
         setLoading(false); // Ocultar el loader después del envío
       }
     }
-
-    /*   try {
-      const response = await axios.post(form.action, formDataToSend, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      if (response.status === 200) {
-        setAlerta(true);
-        setFormData("");
-      } else {
-        console.error("Error al enviar el formulario");
-      }
-    } catch (error) {
-      console.error("Error al enviar el formulario", error);
-    } finally {
-      setLoading(false); // Ocultar el loader después del envío
-    } */
   };
 
   return (
@@ -1407,7 +1392,7 @@ export default function Home() {
                   <form
                     id="form"
                     // action="https://formsubmit.co/camsaseals@gmail.com"
-                    action="https://formsubmit.co/lautiquiroga10@gmail.com, https://formsubmit.co/lautiquiroga@hotmail.com"
+                    action="https://formsubmit.co/lautiquiroga10@gmail.com"
                     method="POST"
                     name="medidas-camsa"
                     onSubmit={handleSubmit}
@@ -1598,7 +1583,7 @@ export default function Home() {
                               name="imagen"
                               accept="image/*" // Esto limitará la selección a archivos de imagen
                               onChange={handleImageChange}
-                              required
+                              // required
                             />
                           </div>
                         </div>
