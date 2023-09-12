@@ -1365,7 +1365,7 @@ export default function Home() {
 
                   <form
                     id="form"
-                    action="https://formsubmit.co/lautiquiroga10@gmail.com"
+                    action="https://formsubmit.co/camsaseals@gmail.com"
                     method="POST"
                     name="medidas-camsa"
                     onSubmit={handleSubmit}
