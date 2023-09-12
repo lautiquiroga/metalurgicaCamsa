@@ -215,6 +215,7 @@ export default function Home() {
   const [alertaError, setAlertaError] = useState(false);
   const [formData, setFormData] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingImg, setLoadingImg] = useState(false);
   const categorias = [
     { nombre: "Rascadores", imagen: categ1 },
     { nombre: "Sellos de vástago", imagen: categ2 },
@@ -1340,7 +1341,17 @@ export default function Home() {
                   alt={categoria.nombre}
                   decoding="async"
                   loading="lazy"
+                  onLoad={() => setLoadingImg(false)}
                 />
+                {loadingImg && (
+                  <div className="loader-container">
+                    <ClipLoader
+                      size={50}
+                      color={"#123abc"}
+                      loading={loadingImg}
+                    />
+                  </div>
+                )}
               </div>
             ))}
         </div>
@@ -1369,7 +1380,17 @@ export default function Home() {
                   alt={perfil.nombre}
                   decoding="async"
                   loading="lazy"
+                  onLoad={() => setLoadingImg(false)}
                 />
+                {loadingImg && (
+                  <div className="loader-container">
+                    <ClipLoader
+                      size={50}
+                      color={"#123abc"}
+                      loading={loadingImg}
+                    />
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -1389,7 +1410,17 @@ export default function Home() {
                     alt={perfilSeleccionado.nombre}
                     decoding="async"
                     loading="lazy"
+                    onLoad={() => setLoadingImg(false)}
                   />
+                  {loadingImg && (
+                    <div className="loader-container">
+                      <ClipLoader
+                        size={50}
+                        color={"#123abc"}
+                        loading={loadingImg}
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="formulario">
                   {alerta && (
