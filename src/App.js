@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route exact path="/metalurgicaCamsa/build" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
       </Routes>
     </div>
   );
