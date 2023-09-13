@@ -2,7 +2,6 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://camseals.vercel.app/",
   "dependencies": {
     "@splinetool/react-spline": "^2.2.6",
     "@testing-library/jest-dom": "^5.17.0",
