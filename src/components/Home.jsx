@@ -1216,7 +1216,10 @@ export default function Home() {
   const handleClickPerfil = (perfil) => {
     setPerfilSeleccionado(perfil);
     setTimeout(() => {
-      window.scrollTo(0, document.body.scrollHeight);
+      const section = document.querySelector(".section");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
     }, 100);
   };
 
@@ -1399,7 +1402,7 @@ export default function Home() {
       {perfilSeleccionado && (
         <>
           {perfilSeleccionado.plano ? (
-            <>
+            <div className="section">
               <p className="titulo lastTitle">
                 Cotización del sello "{perfilSeleccionado.nombre}"
               </p>
@@ -1423,15 +1426,6 @@ export default function Home() {
                   )}
                 </div>
                 <div className="formulario">
-                  {alerta && (
-                    <div className="alertaContainer">
-                      <p>
-                        Enviado con éxito. <br></br>Te proporcionaremos la
-                        cotización tan pronto como sea posible.
-                      </p>
-                    </div>
-                  )}
-
                   <form
                     id="form"
                     // action="https://formsubmit.co/camsaseals@gmail.com"
@@ -1770,7 +1764,14 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-
+                    {alerta && (
+                      <div className="alertaContainer">
+                        <p>
+                          Enviado con éxito. <br></br>Te proporcionaremos la
+                          cotización tan pronto como sea posible.
+                        </p>
+                      </div>
+                    )}
                     <button type="submit" className="submit">
                       Solicitar cotización
                     </button>
@@ -1786,9 +1787,9 @@ export default function Home() {
                   )}
                 </div>
               </div>
-            </>
+            </div>
           ) : (
-            <div className="aviso">
+            <div className="aviso section">
               Contactáte con nosotros para recibir más información sobre el
               perfil "{perfilSeleccionado.nombre}" en menos de 24hs.
             </div>

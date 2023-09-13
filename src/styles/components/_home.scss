@@ -4,7 +4,6 @@ body {
 }
 
 .homeContainer {
-  flex-direction: column;
   padding: 2rem 8vw;
   width: 100%;
   .titulo {
@@ -22,14 +21,17 @@ body {
     );
     color: white;
     text-align: center;
-    padding: 2rem 20rem;
+    padding: 2rem 20vw;
+    @media (max-width: 900px) {
+      padding: 1rem;
+    }
     border-radius: 0.5rem;
     -webkit-border-radius: 0.5rem;
     -moz-border-radius: 0.5rem;
     -ms-border-radius: 0.5rem;
     -o-border-radius: 0.5rem;
     font-size: 1.2rem;
-    margin-top: 5%;
+    margin-top: 2rem;
     // font-weight: 00;
   }
 
@@ -48,8 +50,10 @@ body {
     .categoria-row {
       display: flex;
       max-width: 90rem;
-      // justify-content: start;
-      justify-content: center;
+      justify-content: space-between;
+      @media (max-width: 1300px) {
+        justify-content: center;
+      }
       align-items: center;
       margin-bottom: 20px;
       flex-wrap: wrap;
@@ -83,7 +87,6 @@ body {
     flex-wrap: wrap;
     gap: 2rem;
     margin-bottom: 20px;
-
     .perfil {
       display: flex;
       flex-direction: column;
@@ -105,10 +108,13 @@ body {
       }
 
       img {
-        width: 9rem;
+        width: 14rem;
         height: 7rem;
         object-fit: contain;
         margin-bottom: 5px;
+        @media (max-width: 1200px) {
+          width: 9rem;
+        }
       }
     }
   }
@@ -131,7 +137,9 @@ body {
       @media (max-width: 1000px) {
         width: 20rem;
         height: 20rem;
-        // margin-bottom: 1rem;
+      }
+      @media (max-width: 900px) {
+        width: 100%;
       }
       margin-right: 20px;
       object-fit: contain;
@@ -139,7 +147,9 @@ body {
     }
     .formulario {
       // border: 1px solid red;
-      @media (max-width: 1370px) {
+      width: 60%;
+
+      @media (max-width: 1000px) {
         width: 100%;
       }
       .alertaContainer,
@@ -151,6 +161,7 @@ body {
         -moz-border-radius: 0.5rem;
         -ms-border-radius: 0.5rem;
         -o-border-radius: 0.5rem;
+
         p {
           margin: 0;
           font-size: 1.2rem;
@@ -159,7 +170,10 @@ body {
         &.alertaContainer {
           background-color: rgb(195, 244, 204);
           color: green;
-          margin-bottom: 4%;
+          margin-top: 4%;
+          @media (max-width: 900px) {
+            margin: 2rem 0 0 0;
+          }
         }
         &.alertaErrorContainer {
           background-color: rgb(244, 195, 195);
@@ -230,12 +244,14 @@ body {
           }
           .medidasArchivo {
             display: flex;
+            align-items: flex-end;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 1.5rem;
 
-            @media (max-width: 1500px) {
+            @media (max-width: 900px) {
               flex-direction: column;
+              align-items: flex-start;
               width: 100%;
             }
             .medidasTituloInputs {
@@ -263,7 +279,7 @@ body {
             }
             .archivoTituloInputs {
               .subirImgTitle {
-                margin-bottom: 0.4rem;
+                margin-bottom: 0.3rem;
                 font-weight: 700;
                 font-size: 1.2rem;
                 span {
