@@ -318,6 +318,9 @@ body {
             flex-wrap: wrap;
             gap: 10px;
             .material-option {
+              @media (min-width: 900px) {
+                flex: 1;
+              }
               font-size: 0.8rem;
               @include center;
               text-align: center;
@@ -331,7 +334,7 @@ body {
               -o-border-radius: 0.5rem;
               box-shadow: 0 2px 4px rgba(0, 0, 0, 0.13);
               width: 8rem;
-              height: 3rem;
+              min-height: 3rem;
               &:hover {
                 background-color: rgba(0, 0, 0, 0.096);
               }
