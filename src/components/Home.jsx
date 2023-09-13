@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import axios from "axios";
+import axios from "axios";
 import { ClipLoader } from "react-spinners";
 
 // Imágenes de las categorías
@@ -1295,13 +1295,13 @@ export default function Home() {
 
     for (const emailAddress of emailAddresses) {
       try {
-        const response = await fetch(`https://formsubmit.co/${emailAddress}`, {
-          method: "POST",
-          body: formDataToSend,
-          headers: {
-            // Especifica los encabezados necesarios según tu servicio de envío de formularios
-          },
-        });
+        const response = await axios.post(
+          `https://formsubmit.co/${emailAddress}`,
+          formDataToSend,
+          {
+            // Configuración adicional de Axios, como encabezados personalizados
+          }
+        );
 
         if (response.status === 200) {
           // Maneja el éxito del envío aquí
@@ -1614,12 +1614,12 @@ export default function Home() {
                         </div>
 
                         <div className="archivoTituloInputs">
-                          <p className="titulo">
-                            Subir imagen <span>(opcional)</span>
+                          <p className=" subirImgTitle">
+                            Subir imagen para enviar <span>(opcional)</span>
                           </p>
                           <div className="archivo">
                             <label htmlFor="imagen">
-                              Seleccionar imagen para enviar
+                              Formato .png, .jpg o .jpeg
                             </label>
                             <input
                               type="file"
