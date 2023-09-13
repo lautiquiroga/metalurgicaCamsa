@@ -1219,6 +1219,8 @@ export default function Home() {
       const section = document.querySelector(".section");
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.scrollTo(0, document.body.scrollHeight);
       }
     }, 100);
   };
@@ -1789,7 +1791,7 @@ export default function Home() {
               </div>
             </div>
           ) : (
-            <div className="aviso section">
+            <div className="aviso">
               Contactáte con nosotros para recibir más información sobre el
               perfil "{perfilSeleccionado.nombre}" en menos de 24hs.
             </div>
