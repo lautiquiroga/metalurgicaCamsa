@@ -1289,8 +1289,11 @@ export default function Home() {
     const imageBlob = await imageResponse.blob();
     formDataToSend.append("plano", imageBlob, "plano.jpg");
     const emailAddresses = [
-      "lautiquiroga10@gmail.com",
-      "lautiquiroga@hotmail.com",
+      "camsaseals@gmail.com",
+      "jmolina@metalurgicacamsa.com",
+      "marcelovarela@metalurgicacamsa.com",
+      "metalurgicacamsa@gmail.com",
+      "ncampos@metalurgicacamsa.com",
     ];
 
     // Verifica si se ha seleccionado una imagen antes de agregarla
@@ -1430,8 +1433,8 @@ export default function Home() {
                 <div className="formulario">
                   <form
                     id="form"
-                    // action="https://formsubmit.co/camsaseals@gmail.com"
-                    action="https://formsubmit.co/lautiquiroga10@gmail.com"
+                    action="https://formsubmit.co/camsaseals@gmail.com"
+                    // action="https://formsubmit.co/lautiquiroga10@gmail.com"
                     method="POST"
                     name="medidas-camsa"
                     onSubmit={handleSubmit}
