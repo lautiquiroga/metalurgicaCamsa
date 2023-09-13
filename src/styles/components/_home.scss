@@ -5,12 +5,13 @@ body {
 
 .homeContainer {
   flex-direction: column;
-  padding: 3% 10vw;
+  padding: 2rem 8vw;
   width: 100%;
   .titulo {
-    margin: 2vw 0 1vw 0;
+    margin: 2rem 0 1rem 0;
     font-weight: 700;
-    font-size: $titleSizeBigPC;
+    font-size: 1.2rem;
+    // border: 1px solid red;
   }
   .aviso {
     background: rgb(8, 30, 57);
@@ -21,35 +22,39 @@ body {
     );
     color: white;
     text-align: center;
-    padding: 2vw 20vw;
-    border-radius: 0.5vw;
-    -webkit-border-radius: 0.5vw;
-    -moz-border-radius: 0.5vw;
-    -ms-border-radius: 0.5vw;
-    -o-border-radius: 0.5vw;
-    font-size: 1.6vw;
+    padding: 2rem 20rem;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    font-size: 1.2rem;
     margin-top: 5%;
     // font-weight: 00;
   }
 
   .lastTitle {
-    margin-top: 3vw;
+    margin-top: 3rem;
   }
 
   .categorias {
     .titulo {
-      margin: 0 0 1vw 0;
+      margin: 0 0 1rem 0;
       font-weight: 700;
-      font-size: $titleSizeBigPC;
+      font-size: 1.2rem;
     }
 
     /* Estilos para la fila de categorías */
     .categoria-row {
       display: flex;
-      justify-content: space-between;
+      max-width: 90rem;
+      // justify-content: start;
+      justify-content: center;
       align-items: center;
       margin-bottom: 20px;
-
+      flex-wrap: wrap;
+      gap: 10px;
+      // border: 1px solid red;
       .categoria {
         display: flex;
         flex-direction: column;
@@ -59,11 +64,13 @@ body {
 
         &:hover {
           filter: brightness(0.8);
-          scale: 1.1;
+          @media (min-width: 1370px) {
+            scale: 1.1;
+          }
         }
         img {
-          width: 10vw;
-          height: 6vw;
+          width: 10rem;
+          height: 6rem;
         }
       }
     }
@@ -71,29 +78,36 @@ body {
 
   /* Estilos para la grilla de perfiles */
   .perfil-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 2vw;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
     margin-bottom: 20px;
+
     .perfil {
       display: flex;
       flex-direction: column;
       align-items: center;
       cursor: pointer;
       transition: all 0.5s;
-      border-radius: 0.5vw;
-      -webkit-border-radius: 0.5vw;
-      -moz-border-radius: 0.5vw;
-      -ms-border-radius: 0.5vw;
-      -o-border-radius: 0.5vw;
+      border-radius: 0.5rem;
+      -webkit-border-radius: 0.5rem;
+      -moz-border-radius: 0.5rem;
+      -ms-border-radius: 0.5rem;
+      -o-border-radius: 0.5rem;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.103);
-      flex: 1;
+      // flex: 1;
+
       &:hover {
-        scale: 1.1;
+        @media (min-width: 1370px) {
+          scale: 1.1;
+        }
       }
+
       img {
-        width: 9vw;
-        height: 9vw;
+        width: 9rem;
+        height: 7rem;
+        object-fit: contain;
         margin-bottom: 5px;
       }
     }
@@ -102,29 +116,44 @@ body {
   /* Estilos para la imagen de plano y formulario */
   .plano-form {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    // width: 80vw;
+    // border: 1px solid red;
+    @media (max-width: 1340px) {
+      justify-content: flex-start;
+    }
+    // justify-content: start;
     .imagen-plano img {
       width: 28vw;
       height: 28vw;
+      @media (max-width: 1000px) {
+        width: 20rem;
+        height: 20rem;
+        // margin-bottom: 1rem;
+      }
       margin-right: 20px;
       object-fit: contain;
       border: 1px solid rgb(186, 186, 186);
     }
     .formulario {
-      width: 60%;
+      // border: 1px solid red;
+      @media (max-width: 1370px) {
+        width: 100%;
+      }
       .alertaContainer,
       .alertaErrorContainer {
         text-align: center;
-        padding: 0.5vw 4vw;
-        border-radius: 0.5vw;
-        -webkit-border-radius: 0.5vw;
-        -moz-border-radius: 0.5vw;
-        -ms-border-radius: 0.5vw;
-        -o-border-radius: 0.5vw;
+        padding: 0.5rem 4rem;
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
         p {
           margin: 0;
-          font-size: $titleSizePC;
+          font-size: 1.2rem;
           font-weight: 600;
         }
         &.alertaContainer {
@@ -154,14 +183,19 @@ body {
         display: flex;
         flex-direction: column;
         .titulo {
-          margin: 0 0 0.4vw 0;
+          margin: 0 0 0.4rem 0;
           font-weight: 700;
-          font-size: $titleSizePC;
+          font-size: 1.2rem;
           &:not(:first-child) {
-            margin-top: 2vw;
+            margin-top: 2rem;
           }
+
+          @media (max-width: 1370px) {
+            margin-top: 2rem;
+          }
+
           span {
-            font-size: $descrSizePC;
+            font-size: 0.8rem;
             color: grey;
           }
         }
@@ -178,10 +212,10 @@ body {
             input {
               border: 1px solid rgb(148, 148, 148);
               padding: 2%;
-              font-size: $descrSizePC;
-              height: 2.2vw;
+              font-size: 0.8rem;
+              height: 2.2rem;
               &::placeholder {
-                font-size: $descrSizePC;
+                font-size: 0.8rem;
                 color: rgb(156, 156, 156);
               }
             }
@@ -191,22 +225,32 @@ body {
                 font-weight: 700;
               } */
             label {
-              font-size: $descrSizePC;
+              font-size: 0.8rem;
             }
           }
           .medidasArchivo {
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+
+            @media (max-width: 1500px) {
+              flex-direction: column;
+              width: 100%;
+            }
             .medidasTituloInputs {
               .medidas {
+                flex-wrap: wrap;
+                gap: 0.2rem;
                 div {
                   display: flex;
                   flex-direction: column;
+
                   input {
-                    width: 4vw;
+                    width: 4rem;
                     @include center;
                     text-align: center;
-                    margin-right: 1vw;
+                    margin-right: 1rem;
                     &::-webkit-inner-spin-button,
                     &::-webkit-outer-spin-button {
                       -webkit-appearance: none;
@@ -218,21 +262,30 @@ body {
               }
             }
             .archivoTituloInputs {
+              .subirImgTitle {
+                margin-bottom: 0.4rem;
+                font-weight: 700;
+                font-size: 1.2rem;
+                span {
+                  font-size: 0.8rem;
+                  color: grey;
+                }
+              }
               .archivo {
                 display: flex;
                 flex-direction: column;
                 label {
-                  font-size: $descrSizePC;
+                  font-size: 0.8rem;
                 }
                 input {
                   cursor: pointer;
                   @include center;
-                  width: 21vw;
+                  width: 20rem;
                   border: 1px solid rgb(148, 148, 148);
-                  font-size: $descrSizePC;
-                  padding: 0.3vw 0.3vw;
+                  font-size: 0.8rem;
+                  padding: 0.3rem 0.3rem;
                   &::placeholder {
-                    font-size: $descrSizePC;
+                    font-size: 0.8rem;
                     color: rgb(156, 156, 156);
                   }
                 }
@@ -241,21 +294,28 @@ body {
           }
 
           .selectMaterial {
-            justify-content: space-between;
+            // justify-content: space-around;
+
+            /* @media (max-width: 900px) {
+              justify-content: center;
+            } */
+            flex-wrap: wrap;
+            gap: 10px;
             .material-option {
-              font-size: $descrSizePC;
+              font-size: 0.8rem;
               @include center;
               text-align: center;
-              padding: 0.25vw;
+              padding: 0.25rem;
               cursor: pointer;
               transition: all 0.5s;
-              border-radius: 0.5vw;
-              -webkit-border-radius: 0.5vw;
-              -moz-border-radius: 0.5vw;
-              -ms-border-radius: 0.5vw;
-              -o-border-radius: 0.5vw;
+              border-radius: 0.5rem;
+              -webkit-border-radius: 0.5rem;
+              -moz-border-radius: 0.5rem;
+              -ms-border-radius: 0.5rem;
+              -o-border-radius: 0.5rem;
               box-shadow: 0 2px 4px rgba(0, 0, 0, 0.13);
-              width: 19%;
+              width: 8rem;
+              height: 3rem;
               &:hover {
                 background-color: rgba(0, 0, 0, 0.096);
               }
@@ -277,11 +337,16 @@ body {
             .inputs1 {
               width: 100%;
               display: flex;
+              flex-wrap: wrap;
               flex-direction: row;
               justify-content: space-between;
+              gap: 0.5rem;
               div {
                 width: 30.6%;
-                margin-bottom: 0.5vw;
+                margin-bottom: 0.5rem;
+                @media (max-width: 900px) {
+                  width: 100%;
+                }
                 input {
                   &::-webkit-inner-spin-button,
                   &::-webkit-outer-spin-button {
@@ -294,11 +359,19 @@ body {
             }
             .inputs2 {
               width: 100%;
+              flex-wrap: wrap;
               display: flex;
               flex-direction: row;
+              gap: 1rem;
               justify-content: space-between;
+              @media (max-width: 900px) {
+                margin-top: 0.5rem;
+              }
               div {
                 width: 48%;
+                @media (max-width: 900px) {
+                  width: 100%;
+                }
               }
             }
           }
@@ -313,16 +386,18 @@ body {
           color: #fff;
           border: none;
           // width: 50%;
-          padding: 0.8vw 0;
-          border-radius: 0.5vw;
+          padding: 0.8rem 0;
+          border-radius: 0.5rem;
           cursor: pointer;
-          margin-top: 2.5vw;
-          font-size: $titleSizeBigPC;
+          margin-top: 2.5rem;
+          font-size: 1.2rem;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.302);
           transition: all 0.5s;
           &:hover {
             filter: brightness(0.8);
-            scale: 1.03;
+            @media (min-width: 1370px) {
+              scale: 1.03;
+            }
           }
         }
       }
