@@ -1439,7 +1439,7 @@ export default function Home() {
                     <input
                       type="hidden"
                       name="_subject"
-                      value="Medidas CAMSA"
+                      value="Solicitud de cotización - camseals.com"
                     />
                     <input type="hidden" name="_captcha" value="false" />
                     <div className="columnas">
