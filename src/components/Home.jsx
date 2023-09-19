@@ -11,6 +11,12 @@ import categ5 from "../multimedia/junta plana/categ5.png";
 import categ6 from "../multimedia/anillos guia/categ6.png";
 import categ7 from "../multimedia/anillos de apoyo/categ7.png";
 
+// Imágenes de los esquemas
+import esq1 from "../multimedia/esquemas/esq1.jpeg";
+import esq2 from "../multimedia/esquemas/esq2.jpeg";
+import esq3 from "../multimedia/esquemas/esq3.jpeg";
+import esq4 from "../multimedia/esquemas/esq4.jpeg";
+
 // Imágenes de los planos
 import plano1 from "../multimedia/planos/plano1.png";
 import plano2 from "../multimedia/planos/plano2.png";
@@ -1330,7 +1336,10 @@ export default function Home() {
   return (
     <div className="homeContainer">
       <div className="categorias">
-        <p className="titulo">Apicación de sellos</p>
+        <p className="titulo titulo1">
+          Seleccioná la aplicación, perfil e infórmanos las medidas necesarias.{" "}
+        </p>
+        <p className="titulo">Aplicación de sellos</p>
         <div className="categoria-row">
           {categorias &&
             categorias.map((categoria) => (
@@ -1369,6 +1378,25 @@ export default function Home() {
           <p className="titulo">
             Categoría seleccionada: {categoriaSeleccionada}
           </p>
+
+          <div className="esquema">
+            {categoriaSeleccionada === "Anillos guía" && (
+              <img src={esq1} alt="Esquema 1" />
+            )}
+            {(categoriaSeleccionada === "Rascadores" ||
+              categoriaSeleccionada === "Sellos de vástago" ||
+              categoriaSeleccionada === "Sellos rotativos") && (
+              <img src={esq2} alt="Esquema 2" />
+            )}
+            {(categoriaSeleccionada === "Anillos de apoyo" ||
+              categoriaSeleccionada === "Junta plana") && (
+              <img src={esq3} alt="Esquema 3" />
+            )}
+            {categoriaSeleccionada === "Sellos de pistón" && (
+              <img src={esq4} alt="Esquema 4" />
+            )}
+          </div>
+
           <p className="titulo">Tipo de perfil</p>
           <div className="perfil-grid">
             {perfilesPorCategoria[categoriaSeleccionada].map((perfil) => (
