@@ -1674,7 +1674,7 @@ export default function Home() {
                               : ""
                           }`}
                         >
-                          HPU - Elastomero Termoplastico Rojo
+                          HPU - Elastómero Termoplástico Rojo
                         </div>
                         <div
                           onClick={() =>
@@ -1687,7 +1687,7 @@ export default function Home() {
                               : ""
                           }`}
                         >
-                          POM - Plastico - Delring Blanco
+                          POM - Plástico - Delring Blanco
                         </div>
                         <div
                           onClick={() =>
@@ -1699,7 +1699,7 @@ export default function Home() {
                               : ""
                           }`}
                         >
-                          PTFE - Teflon + 40% Bronce
+                          PTFE - Teflón + 40% Bronce
                         </div>
                         <div
                           onClick={() => handleOptionClick("NRB - Goma")}
