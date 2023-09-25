@@ -1339,7 +1339,7 @@ export default function Home() {
         <p className="titulo titulo1">
           Seleccioná la aplicación, perfil e infórmanos las medidas necesarias.{" "}
         </p>
-        <p className="titulo">Aplicación de sellos</p>
+        <p className="titulo">Paso 1: Seleccioná la aplicación de tu sellos</p>
         <div className="categoria-row">
           {categorias &&
             categorias.map((categoria) => (
@@ -1397,7 +1397,7 @@ export default function Home() {
             )}
           </div>
 
-          <p className="titulo">Tipo de perfil</p>
+          <p className="titulo">Paso 2: Elegí el perfil que necesitás</p>
           <div className="perfil-grid">
             {perfilesPorCategoria[categoriaSeleccionada].map((perfil) => (
               <div
@@ -1436,9 +1436,7 @@ export default function Home() {
         <>
           {perfilSeleccionado.plano ? (
             <div className="section">
-              <p className="titulo lastTitle">
-                Cotización del sello "{perfilSeleccionado.nombre}"
-              </p>
+              <p className="titulo lastTitle">Paso 3: Indicanos las medidas</p>
               <div className="plano-form">
                 <div className="imagen-plano">
                   <img
@@ -1477,7 +1475,7 @@ export default function Home() {
                       <div className="medidasArchivo">
                         <div className="medidasTituloInputs">
                           <p className="titulo">
-                            Escriba las medidas <span>(en milímetros)</span>
+                            Escribí las medidas <span>(en milímetros)</span>
                           </p>
                           <div className="medidas">
                             <input
@@ -1659,7 +1657,7 @@ export default function Home() {
                         </div>
                       </div>
 
-                      <p className="titulo">Seleccione el material</p>
+                      <p className="titulo">Seleccioná el material</p>
                       <div className="selectMaterial">
                         <div
                           onClick={() =>
@@ -1725,7 +1723,7 @@ export default function Home() {
                           <p>Debes seleccionar un material</p>
                         </div>
                       )}
-                      <p className="titulo">Complete con sus datos</p>
+                      <p className="titulo">Completá con tus datos</p>
                       <div className="datosCliente">
                         <div className="inputs1">
                           <div>
@@ -1734,7 +1732,7 @@ export default function Home() {
                               type="text"
                               id="nombre"
                               name="nombre"
-                              placeholder="Escriba su nombre y apellido"
+                              placeholder="Escribí tu nombre y apellido"
                               value={formData[`nombre`] || ""}
                               onChange={handleInputChange}
                               required
@@ -1747,7 +1745,7 @@ export default function Home() {
                               type="number"
                               id="telefono"
                               name="telefono"
-                              placeholder="Escriba su teléfono"
+                              placeholder="Escribí tu número de teléfono"
                               value={formData[`telefono`] || ""}
                               onChange={handleInputChange}
                               required
@@ -1774,7 +1772,7 @@ export default function Home() {
                               type="email"
                               id="email"
                               name="email"
-                              placeholder="Escriba su email"
+                              placeholder="Escribí tu email"
                               value={formData[`email`] || ""}
                               onChange={handleInputChange}
                               required
@@ -1782,13 +1780,13 @@ export default function Home() {
                           </div>
                           <div>
                             <label htmlFor="empresa">
-                              Nombre de su empresa:
+                              Nombre de tu empresa:
                             </label>
                             <input
                               type="text"
                               id="empresa"
                               name="empresa"
-                              placeholder="Escriba el nombre de su empresa"
+                              placeholder="Escribí el nombre de tu empresa"
                               value={formData[`empresa`] || ""}
                               onChange={handleInputChange}
                               required
