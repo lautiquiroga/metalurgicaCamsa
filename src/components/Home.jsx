@@ -1339,7 +1339,7 @@ export default function Home() {
         <p className="titulo titulo1">
           Seleccioná la aplicación, perfil e infórmanos las medidas necesarias.{" "}
         </p>
-        <p className="titulo">Paso 1: Seleccioná la aplicación de tu sellos</p>
+        <p className="titulo">Paso 1: Seleccioná la aplicación de tu sello</p>
         <div className="categoria-row">
           {categorias &&
             categorias.map((categoria) => (
