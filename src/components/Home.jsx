@@ -1821,7 +1821,7 @@ export default function Home() {
             </div>
           ) : (
             <div className="aviso">
-              Contactáte con nosotros para recibir más información sobre el
+              Contactate con nosotros para recibir más información sobre el
               perfil "{perfilSeleccionado.nombre}", te responderemos en menos de
               24hs.
             </div>
